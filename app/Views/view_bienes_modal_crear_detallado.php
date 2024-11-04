@@ -1,4 +1,4 @@
-<form action="<?= base_url('bienes/guardar') ?>" method="post">
+<form action="<?= base_url('bienes/guardar_detallado') ?>" method="post">
     <div class="modal fade" id="modalCrearDetallado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-lg">
             <div class="modal-content">
@@ -13,12 +13,19 @@
 
                             <!-- ##### Oficina origen ##### -->
                             <div class="mb-3">
-                                <label for="" class="form-label">Oficina origen</label>
+                                <label for="oficina_origen" class="form-label">Oficina origen</label>
                                 <select
-                                    class="form-select form-select-md"
-                                    name=""
-                                    id="">
+                                    class="form-select form-select-md selectpicker"
+                                    name="oficina_origen"
+                                    id="oficina_origen"
+                                    data-live-search="true">
                                     <option selected>Select one</option>
+                                    <?php foreach ($oficinas as $registro) : ?>
+                                        <option
+                                            value="<?= $registro['id_oficina'] ?>">
+                                            <?= $registro['nombre'] ?>
+                                        </option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <div
@@ -27,12 +34,12 @@
 
                                     <!-- ##### Modelo ##### -->
                                     <div class="mb-3">
-                                        <label for="" class="form-label">Modelo</label>
+                                        <label for="modelo" class="form-label">Modelo</label>
                                         <input
                                             type="text"
                                             class="form-control"
-                                            name=""
-                                            id=""
+                                            name="modelo"
+                                            id="modelo"
                                             aria-describedby="helpId"
                                             placeholder="" />
                                     </div>
@@ -41,12 +48,12 @@
 
                                     <!-- ##### Código patrimonial ##### -->
                                     <div class="mb-3">
-                                        <label for="" class="form-label">Código patrimonial</label>
+                                        <label for="codigo_patrimonial" class="form-label">Código patrimonial</label>
                                         <input
                                             type="text"
                                             class="form-control"
-                                            name=""
-                                            id=""
+                                            name="codigo_patrimonial"
+                                            id="codigo_patrimonial"
                                             aria-describedby="helpId"
                                             placeholder="" />
                                     </div>
@@ -58,12 +65,12 @@
 
                                     <!-- ##### Categoría ##### -->
                                     <div class="mb-3">
-                                        <label for="" class="form-label">Categoría</label>
+                                        <label for="categoria" class="form-label">Categoría</label>
                                         <input
                                             type="text"
                                             class="form-control"
-                                            name=""
-                                            id=""
+                                            name="categoria"
+                                            id="categoria"
                                             aria-describedby="helpId"
                                             placeholder="" />
                                     </div>
@@ -72,11 +79,11 @@
 
                                     <!-- ##### Estado ##### -->
                                     <div class="mb-3">
-                                        <label for="" class="form-label">Estado</label>
+                                        <label for="estado" class="form-label">Estado</label>
                                         <select
                                             class="form-select form-select-md"
-                                            name=""
-                                            id="">
+                                            name="estado"
+                                            id="estado">
                                             <option selected>Select one</option>
                                         </select>
                                     </div>
@@ -89,12 +96,12 @@
 
                                     <!-- ##### Fecha ##### -->
                                     <div class="mb-3">
-                                        <label for="" class="form-label">Date</label>
+                                        <label for="fecha" class="form-label">Fecha ingreso</label>
                                         <input
                                             type="date"
                                             class="form-control"
-                                            name=""
-                                            id=""
+                                            name="fecha"
+                                            id="fecha"
                                             aria-describedby="helpId"
                                             placeholder="" />
                                     </div>
@@ -103,12 +110,12 @@
 
                                     <!-- ##### Hora ##### -->
                                     <div class="mb-3">
-                                        <label for="" class="form-label">Hora</label>
+                                        <label for="hora" class="form-label">Hora</label>
                                         <input
                                             type="time"
                                             class="form-control"
-                                            name=""
-                                            id=""
+                                            name="hora"
+                                            id="hora"
                                             aria-describedby="helpId"
                                             placeholder="" />
                                     </div>

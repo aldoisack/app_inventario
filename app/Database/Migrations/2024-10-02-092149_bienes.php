@@ -11,18 +11,18 @@ class Bienes extends Migration
 
         // Uncomment below if want config
         $this->forge->addField([
-            'id_bien'                  => [
+            'id_bien'            => [
                 'type'           => 'INT',
                 'unsigned'       => TRUE,
                 'auto_increment' => TRUE
             ],
-            'codigo_patrimonial'               => [
+            'codigo_patrimonial' => [
                 'type'           => 'VARCHAR',
                 'constraint'     => '100',
             ],
-            'descripcion' => [
-                'type'      => 'VARCHAR',
-                'constraint' => '8',
+            'descripcion'        => [
+                'type'           => 'VARCHAR',
+                'constraint'     => '8',
             ]
         ]);
         $this->forge->addKey('id_bien', TRUE);
