@@ -5,6 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\Model_BienPatrimonial;
 use App\Models\Model_Categorias;
+use App\Models\Model_Estados;
 use App\Models\Model_Oficinas;
 
 class Controller_BienPatrimonial extends Controller
@@ -12,8 +13,9 @@ class Controller_BienPatrimonial extends Controller
     public function listar()
     {
         $listas = [
-            'oficinas' => (new Model_Oficinas())->obtener_registros(),
+            'oficinas'   => (new Model_Oficinas())->obtener_registros(),
             'categorias' => (new Model_Categorias())->obtener_registros(),
+            'estados'    => (new Model_Estados())->obtener_registros(),
         ];
 
         $data = [
