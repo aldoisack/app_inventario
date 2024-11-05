@@ -21,7 +21,7 @@
                                     data-live-search="true">
                                     <option selected>Select one</option>
                                     <?php foreach ($oficinas as $registro) : ?>
-                                        <option
+                                        <option <?= ($registro['nombre'] == 'OTI') ? 'selected' : ''; ?>
                                             value="<?= $registro['id_oficina'] ?>">
                                             <?= $registro['nombre'] ?>
                                         </option>
@@ -65,15 +65,20 @@
 
                                     <!-- ##### Categoría ##### -->
                                     <div class="mb-3">
-                                        <label for="categoria" class="form-label">Categoría</label>
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            name="categoria"
-                                            id="categoria"
-                                            aria-describedby="helpId"
-                                            placeholder="" />
+                                        <label for="categorias" class="form-label">Categorías</label>
+                                        <select
+                                            class="form-select form-select-md"
+                                            name="categorias"
+                                            id="categorias">
+                                            <option selected>Select one</option>
+                                            <?php foreach ($categorias as $registro) : ?>
+                                                <option value="<?= $registro['id_categoria'] ?>">
+                                                    <?= $registro['nombre_categoria'] ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
+
                                 </div>
                                 <div class="col">
 

@@ -25,3 +25,6 @@ $routes->post('bienes/guardar_detallado', 'Controller_BienPatrimonial::guardar_d
 
 $routes->get('oficinas/listar', 'Controller_Oficinas::listar');
 $routes->post('oficinas/guardar', 'Controller_Oficinas::guardar');
+// Categorias
+$routes->get('categorias/listar', 'Controller_Categorias::listar');
+$routes->post('categorias/guardar', 'Controller_Categorias::guardar');

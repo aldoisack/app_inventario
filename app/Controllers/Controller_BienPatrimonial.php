@@ -4,21 +4,25 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\Model_BienPatrimonial;
+use App\Models\Model_Categorias;
 use App\Models\Model_Oficinas;
 
 class Controller_BienPatrimonial extends Controller
 {
     public function listar()
     {
-        $oficinas['oficinas'] = (new Model_Oficinas())->obtener_registros();
+        $listas = [
+            'oficinas' => (new Model_Oficinas())->obtener_registros(),
+            'categorias' => (new Model_Categorias())->obtener_registros(),
+        ];
 
         $data = [
             'bienes'                => (new Model_BienPatrimonial())->obtener_registros(),
             'modal_crear_rapido'    => view('view_bienes_modal_crear_rapido'),
-            'modal_crear_detallado' => view('view_bienes_modal_crear_detallado', $oficinas),
+            'modal_crear_detallado' => view('view_bienes_modal_crear_detallado', $listas),
             'modal_editar'          => view('view_bienes_modal_editar'),
             'modal_detalle'         => view('view_bienes_modal_detalle'),
-            'modal_transferencia'   => view('view_bienes_modal_transferencia', $oficinas),
+            'modal_transferencia'   => view('view_bienes_modal_transferencia', $listas),
         ];
 
         return
