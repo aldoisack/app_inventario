@@ -35,15 +35,27 @@
                 </button>
                 <div class="collapse navbar-collapse" id="collapsibleNavId">
                     <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+
+                        <!-- ##### Bienes ##### -->
                         <li class="nav-item">
-                            <a class="nav-link active" href="<?= base_url('bienes/listar') ?>" aria-current="page">Bienes</a>
+                            <a class="nav-link" href="<?= base_url('bienes/listar') ?>" aria-current="page">Bienes</a>
                         </li>
+
+                        <!-- ##### Oficinas ##### -->
                         <li class="nav-item">
                             <a class="nav-link" href="<?= base_url('oficinas/listar') ?>">Oficinas</a>
                         </li>
+
+                        <!-- ##### Categorías ##### -->
                         <li class="nav-item">
                             <a class="nav-link" href="<?= base_url('categorias/listar') ?>">Categorias</a>
                         </li>
+
+                        <!-- ##### Estados ##### -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('estados/listar') ?>">Estados</a>
+                        </li>
+
                     </ul>
                     <form class="d-flex my-2 my-lg-0">
                         <input

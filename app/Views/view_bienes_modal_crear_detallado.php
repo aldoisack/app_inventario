@@ -1,14 +1,21 @@
 <form action="<?= base_url('bienes/guardar_detallado') ?>" method="post">
+
+    <!-- ##### Propiedades del modal ##### -->
     <div class="modal fade" id="modalCrearDetallado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-lg">
             <div class="modal-content">
+
+                <!-- ##### Cabecera del modal ##### -->
                 <div class="modal-header">
+                    <!-- Título -->
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo bien</h1>
+                    <!-- Botón cerrar -->
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+
+                <!-- ##### Cuerpo del modal ##### -->
                 <div class="modal-body">
-                    <div
-                        class="row justify-content-center align-items-center g-2">
+                    <div class="row justify-content-center align-items-center g-2">
                         <div class="col-md-7">
 
                             <!-- ##### Oficina origen ##### -->
@@ -21,18 +28,19 @@
                                     data-live-search="true">
                                     <option selected>Select one</option>
                                     <?php foreach ($oficinas as $registro) : ?>
-                                        <option <?= ($registro['nombre'] == 'OTI') ? 'selected' : ''; ?>
+                                        <option
+                                            <?= ($registro['nombre'] == 'OTI') ? 'selected' : ''; ?>
                                             value="<?= $registro['id_oficina'] ?>">
                                             <?= $registro['nombre'] ?>
                                         </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                            <div
-                                class="row justify-content-center align-items-center g-2">
-                                <div class="col">
 
-                                    <!-- ##### Modelo ##### -->
+                            <div class="row justify-content-center align-items-center g-2">
+
+                                <!-- ##### Modelo ##### -->
+                                <div class="col">
                                     <div class="mb-3">
                                         <label for="modelo" class="form-label">Modelo</label>
                                         <input
@@ -44,9 +52,9 @@
                                             placeholder="" />
                                     </div>
                                 </div>
-                                <div class="col">
 
-                                    <!-- ##### Código patrimonial ##### -->
+                                <!-- ##### Código patrimonial ##### -->
+                                <div class="col">
                                     <div class="mb-3">
                                         <label for="codigo_patrimonial" class="form-label">Código patrimonial</label>
                                         <input
@@ -58,12 +66,12 @@
                                             placeholder="" />
                                     </div>
                                 </div>
-                            </div>
-                            <div
-                                class="row justify-content-center align-items-center g-2">
-                                <div class="col">
 
-                                    <!-- ##### Categoría ##### -->
+                            </div>
+                            <div class="row justify-content-center align-items-center g-2">
+
+                                <!-- ##### Categoría ##### -->
+                                <div class="col">
                                     <div class="mb-3">
                                         <label for="categorias" class="form-label">Categorías</label>
                                         <select
@@ -72,17 +80,17 @@
                                             id="categorias">
                                             <option selected>Select one</option>
                                             <?php foreach ($categorias as $registro) : ?>
-                                                <option value="<?= $registro['id_categoria'] ?>">
+                                                <option
+                                                    value="<?= $registro['id_categoria'] ?>">
                                                     <?= $registro['nombre_categoria'] ?>
                                                 </option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
-
                                 </div>
-                                <div class="col">
 
-                                    <!-- ##### Estado ##### -->
+                                <!-- ##### Estado ##### -->
+                                <div class="col">
                                     <div class="mb-3">
                                         <label for="estado" class="form-label">Estado</label>
                                         <select
@@ -90,16 +98,22 @@
                                             name="estado"
                                             id="estado">
                                             <option selected>Select one</option>
+                                            <?php foreach ($estados as $registro) : ?>
+                                                <option
+                                                    <?= ($registro['nombre_estado'] == 'Nuevo') ? 'Selected' : '' ?>
+                                                    value="<?= $registro['id_estado'] ?>">
+                                                    <?= $registro['nombre_estado'] ?>
+                                                </option>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                 </div>
+
                             </div>
+                            <div class="row justify-content-center align-items-center g-2">
 
-                            <div
-                                class="row justify-content-center align-items-center g-2">
+                                <!-- ##### Fecha ##### -->
                                 <div class="col">
-
-                                    <!-- ##### Fecha ##### -->
                                     <div class="mb-3">
                                         <label for="fecha" class="form-label">Fecha ingreso</label>
                                         <input
@@ -108,12 +122,13 @@
                                             name="fecha"
                                             id="fecha"
                                             aria-describedby="helpId"
-                                            placeholder="" />
+                                            placeholder=""
+                                            value="<?= date('Y-m-d'); ?>" />
                                     </div>
                                 </div>
-                                <div class="col">
 
-                                    <!-- ##### Hora ##### -->
+                                <!-- ##### Hora ##### -->
+                                <div class="col">
                                     <div class="mb-3">
                                         <label for="hora" class="form-label">Hora</label>
                                         <input
@@ -125,12 +140,12 @@
                                             placeholder="" />
                                     </div>
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
 
+                        <!-- ##### Imagen ##### -->
                         <div class="col px-4">
-                            <!-- ##### Imagen ##### -->
                             <div class="mb-3">
                                 <label for="imagen" class="form-label">Subir una imagen</label>
                                 <input class="form-control" type="file" id="imagen" onchange="previewImage(event)">
@@ -147,10 +162,13 @@
 
                     </div>
                 </div>
+
+                <!-- ##### Pie del modal ##### -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-success">Guardar</button>
                 </div>
+
             </div>
         </div>
     </div>
