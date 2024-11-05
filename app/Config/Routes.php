@@ -34,7 +34,6 @@ $routes->post('oficinas/guardar', 'Controller_Oficinas::guardar');
 $routes->get('categorias/listar', 'Controller_Categorias::listar');
 $routes->post('categorias/guardar', 'Controller_Categorias::guardar');
 
-
 // ▗▄▄▄▖ ▗▄▄▖▗▄▄▄▖▗▄▖ ▗▄▄▄  ▗▄▖  ▗▄▄▖
 // ▐▌   ▐▌     █ ▐▌ ▐▌▐▌  █▐▌ ▐▌▐▌   
 // ▐▛▀▀▘ ▝▀▚▖  █ ▐▛▀▜▌▐▌  █▐▌ ▐▌ ▝▀▚▖

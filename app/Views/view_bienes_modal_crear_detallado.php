@@ -1,4 +1,4 @@
-<form action="<?= base_url('bienes/guardar_detallado') ?>" method="post">
+<form action="<?= base_url('bienes/guardar_detallado') ?>" method="post" enctype="multipart/form-data">
 
     <!-- ##### Propiedades del modal ##### -->
     <div class="modal fade" id="modalCrearDetallado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -73,11 +73,11 @@
                                 <!-- ##### Categoría ##### -->
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label for="categorias" class="form-label">Categorías</label>
+                                        <label for="categoria" class="form-label">Categorías</label>
                                         <select
                                             class="form-select form-select-md"
-                                            name="categorias"
-                                            id="categorias">
+                                            name="categoria"
+                                            id="categoria">
                                             <option selected>Select one</option>
                                             <?php foreach ($categorias as $registro) : ?>
                                                 <option
@@ -137,7 +137,8 @@
                                             name="hora"
                                             id="hora"
                                             aria-describedby="helpId"
-                                            placeholder="" />
+                                            placeholder=""
+                                            value="<?= date('H:i') ?>" />
                                     </div>
                                 </div>
 
@@ -156,6 +157,7 @@
                                     src=""
                                     class="img-fluid rounded-top"
                                     width="100%"
+                                    height="100%"
                                     alt="" />
                             </div>
                         </div>
