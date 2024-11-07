@@ -149,7 +149,7 @@
                         <div class="col px-4">
                             <div class="mb-3">
                                 <label for="imagen" class="form-label">Subir una imagen</label>
-                                <input class="form-control" type="file" id="imagen" onchange="previewImage(event)">
+                                <input class="form-control" type="file" id="imagen" name="imagen" onchange="previewImage(event)">
                             </div>
                             <div class="mb-3">
                                 <img
@@ -176,7 +176,7 @@
     </div>
 </form>
 
-
+<!-- Código para mostrar la imagen en el formulario -->
 <script>
     function previewImage(event) {
         const file = event.target.files[0];

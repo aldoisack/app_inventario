@@ -45,6 +45,11 @@ class Controller_BienPatrimonial extends Controller
 
     public function guardar_detallado()
     {
+        $archivo_imagen = $this->request->getFile('imagen');
+        $nombre_imagen = $archivo_imagen->getRandomName();
+
+        $archivo_imagen->move('../public/uploads', $nombre_imagen);
+
         $datos = [
             'oficina_origen'     => $this->request->getVar('oficina_origen'),
             'modelo'             => $this->request->getVar('modelo'),
@@ -53,7 +58,7 @@ class Controller_BienPatrimonial extends Controller
             'estado'             => $this->request->getVar('estado'),
             'fecha'              => $this->request->getVar('fecha'),
             'hora'               => $this->request->getVar('hora'),
-            'imagen'             => $this->request->getFile('imagen'),
+            'imagen'             => $nombre_imagen,
         ];
 
         // (new Model_BienPatrimonial())->insert($datos);

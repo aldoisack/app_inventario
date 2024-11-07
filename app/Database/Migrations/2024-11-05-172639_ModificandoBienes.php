@@ -29,17 +29,10 @@ class ModificandoBienes extends Migration
 
         // Agregar las columnas a la tabla 'bienes'
         $this->forge->addColumn('bienes', $columnas);
-
-        // Agregar las restricciones de claves foráneas
-        $this->forge->addForeignKey('id_categoria', 'categorias', 'id_categoria', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('id_estado', 'estados', 'id_estado', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('oficina_origen', 'oficinas', 'id_oficina', 'CASCADE');
     }
 
     public function down()
     {
-        // Eliminar las restricciones de claves foráneas
-
         // Eliminar las columnas agregadas
         $this->forge->dropColumn('bienes', ['oficina_origen', 'modelo', 'id_categoria', 'id_estado']);
     }
