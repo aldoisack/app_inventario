@@ -54,15 +54,13 @@ class Controller_BienPatrimonial extends Controller
             'oficina_origen'     => $this->request->getVar('oficina_origen'),
             'modelo'             => $this->request->getVar('modelo'),
             'codigo_patrimonial' => $this->request->getVar('codigo_patrimonial'),
-            'categoria'          => $this->request->getVar('categoria'),
-            'estado'             => $this->request->getVar('estado'),
-            'fecha'              => $this->request->getVar('fecha'),
-            'hora'               => $this->request->getVar('hora'),
+            'id_categoria'       => $this->request->getVar('categoria'),
+            'id_estado'          => $this->request->getVar('estado'),
             'imagen'             => $nombre_imagen,
         ];
 
-        // (new Model_BienPatrimonial())->insert($datos);
-        print_r($datos);
-        // $this->response->redirect(base_url('bienes/listar'));
+        (new Model_BienPatrimonial())->insert($datos);
+        // print_r($datos);
+        $this->response->redirect(base_url('bienes/listar'));
     }
 }
