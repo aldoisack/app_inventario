@@ -15,4 +15,8 @@ class Model_Estados extends Model
     {
         return $this->findAll();
     }
+    public function buscar()
+    {
+        return '1';
+    }
 }

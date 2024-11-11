@@ -15,7 +15,7 @@ $routes->post('guardar', 'Probando::guardar');
 // ▐▙▄▞▘▗▄█▄▖▐▙▄▄▖▐▌  ▐▌▐▙▄▄▖▗▄▄▞▘
 
 $routes->get('bienes/listar', 'Controller_BienPatrimonial::listar');
-$routes->post('bienes/guardar', 'Controller_BienPatrimonial::guardar');
+$routes->post('bienes/guardar_rapido', 'Controller_BienPatrimonial::guardar_rapido');
 $routes->post('bienes/guardar_detallado', 'Controller_BienPatrimonial::guardar_detallado');
 
 // ▗▄▖ ▗▄▄▄▖▗▄▄▄▖ ▗▄▄▖▗▄▄▄▖▗▖  ▗▖ ▗▄▖  ▗▄▄▖

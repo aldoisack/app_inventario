@@ -20,7 +20,7 @@ class Controller_BienPatrimonial extends Controller
 
         $data = [
             'bienes'                => (new Model_BienPatrimonial())->obtener_registros(),
-            'modal_crear_rapido'    => view('view_bienes_modal_crear_rapido'),
+            'modal_crear_rapido'    => view('view_bienes_modal_crear_rapido', $listas),
             'modal_crear_detallado' => view('view_bienes_modal_crear_detallado', $listas),
             'modal_editar'          => view('view_bienes_modal_editar'),
             'modal_detalle'         => view('view_bienes_modal_detalle'),
@@ -33,15 +33,25 @@ class Controller_BienPatrimonial extends Controller
             view('view_web_footer');
     }
 
-    public function guardar()
+    public function guardar_rapido()
     {
-        $datos = [
-            'descripcion' => $this->request->getVar('descripcion'),
-            'codigo_patrimonial' => $this->request->getVar('codigo_patrimonial'),
-        ];
-        (new Model_BienPatrimonial())->insert($datos);
-        $this->response->redirect(base_url('bienes/listar'));
+        // Obtén los datos de los inputs como arrays
+        $categorias = $this->request->getVar('categoria');
+        $codigos_patrimoniales = $this->request->getVar('codigo_patrimonial');
+
+        // Recorre cada elemento del array y guarda los datos
+        foreach ($categorias as $index => $categorias) {
+            $datos = [
+                'oficina_origen' => (new Model_Oficinas())->buscar('OTI'),
+                'codigo_patrimonial' => $codigos_patrimoniales[$index],
+                'id_categoria' => $categorias,
+                'id_estado' => (new Model_Estados())->buscar('Nuevo'),
+            ];
+            // $model->insert($datos);
+            print_r($datos);
+        }
     }
+
 
     public function guardar_detallado()
     {

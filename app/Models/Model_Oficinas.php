@@ -15,4 +15,13 @@ class Model_Oficinas extends Model
     {
         return $this->findAll();
     }
+    public function buscar()
+    {
+        return '1';
+    }
+    public function obtener_id_perfil($oficina)
+    {
+        $registro = $this->where("nombre_oficina", $oficina)->first();
+        return $registro["id_oficina"];
+    }
 }

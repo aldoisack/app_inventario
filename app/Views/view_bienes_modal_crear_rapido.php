@@ -1,8 +1,8 @@
 <!-- ##### Formulario ##### -->
-<form action="<?= base_url('bienes/guardar') ?>" method="post">
+<form action="<?= base_url('bienes/guardar_rapido') ?>" method="post">
 
     <div class="modal fade" id="modalCrearRapido" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
 
                 <!-- ##### Cabecera del modal ##### -->
@@ -23,17 +23,19 @@
                     <div id="input-container" class="mb-3">
                         <div class="row justify-content-center align-items-center g-2">
 
-                            <!-- ###### Descripción ##### -->
+                            <!-- ###### Categoría ##### -->
                             <div class="col-md-4">
-                                <label for="descripcion" class="form-label">Descripción</label>
-                                <input
-                                    required
-                                    type="text"
-                                    class="form-control"
-                                    name="descripcion"
-                                    id="descripcion"
-                                    aria-describedby="helpId"
-                                    placeholder="" />
+                                <label for="oficina_origen" class="form-label">Categorías</label>
+                                <select
+                                    class="form-select form-select-md"
+                                    name="categoria[]">
+                                    <option selected>Select one</option>
+                                    <?php foreach ($categorias as $registro) : ?>
+                                        <option value="<?= $registro['id_categoria'] ?>">
+                                            <?= $registro['nombre_categoria'] ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
 
                             <!-- ##### Código patrimonial ##### -->
@@ -43,8 +45,8 @@
                                     required
                                     type="text"
                                     class="form-control"
-                                    name="codigo_patrimonial"
-                                    id="codigo_patrimonial"
+                                    name="codigo_patrimonial[]"
+
                                     aria-describedby="helpId"
                                     placeholder="" />
                             </div>
@@ -73,13 +75,16 @@
 
         newInputGroup.innerHTML = `
             <div class="col-md-4">
-                <input
-                    required
-                    type="text"
-                    class="form-control"
-                    name="descripcion[]"
-                    aria-describedby="helpId"
-                    placeholder="" />                                         
+                <select
+                    class="form-select form-select-md"
+                    name="categoria[]">
+                    <option selected>Select one</option>
+                    <?php foreach ($categorias as $registro) : ?>
+                        <option value="<?= $registro['id_categoria'] ?>">
+                            <?= $registro['nombre_categoria'] ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>                                      
             </div>
             <div class="col-md-8">            
                 <input
