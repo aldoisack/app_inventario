@@ -36,7 +36,7 @@
                 <div class="collapse navbar-collapse" id="collapsibleNavId">
                     <ul class="navbar-nav me-auto mt-2 mt-lg-0">
 
-                        <!-- ##### Bienes ##### -->
+                        <!-- ##### Stock ##### -->
                         <li class="nav-item">
                             <a class="nav-link" href="<?= base_url('bienes/listar') ?>" aria-current="page">Bienes</a>
                         </li>
@@ -51,23 +51,33 @@
                             <a class="nav-link" href="<?= base_url('categorias/listar') ?>">Categorias</a>
                         </li>
 
+                        <!-- ##### Movimientos ##### -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('estados/listar') ?>">Movimientos</a>
+                        </li>
+
+                        <!-- ##### Bitácora ##### -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('estados/listar') ?>">Bitácora</a>
+                        </li>
+
                         <!-- ##### Estados ##### -->
                         <li class="nav-item">
                             <a class="nav-link" href="<?= base_url('estados/listar') ?>">Estados</a>
                         </li>
 
+                        <!-- ##### Usuarios ##### -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('estados/listar') ?>">Usuarios</a>
+                        </li>
+
+                        <!-- ##### Reportes ##### -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('estados/listar') ?>">Reportes</a>
+                        </li>
+
                     </ul>
-                    <form class="d-flex my-2 my-lg-0">
-                        <input
-                            class="form-control me-sm-2"
-                            type="text"
-                            placeholder="Search" />
-                        <button
-                            class="btn btn-outline-success my-2 my-sm-0"
-                            type="submit">
-                            Search
-                        </button>
-                    </form>
+
                 </div>
             </div>
         </nav>
