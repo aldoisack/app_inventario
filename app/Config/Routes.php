@@ -5,9 +5,8 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
-$routes->get('probando', 'Probando::probando');
-$routes->post('guardar', 'Probando::guardar');
+
+$routes->get('/', 'Controller_Login::index');
 
 // ▗▄▄▖ ▗▄▄▄▖▗▄▄▄▖▗▖  ▗▖▗▄▄▄▖ ▗▄▄▖
 // ▐▌ ▐▌  █  ▐▌   ▐▛▚▖▐▌▐▌   ▐▌   

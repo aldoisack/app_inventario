@@ -11,12 +11,12 @@ class Probando extends Migration
 
         // Uncomment below if want config
         $this->forge->addField([
-            'id'                  => [
+            'id'                 => [
                 'type'           => 'INT',
                 'unsigned'       => TRUE,
                 'auto_increment' => TRUE
             ],
-            'title'               => [
+            'title'              => [
                 'type'           => 'VARCHAR',
                 'constraint'     => '100',
             ],
