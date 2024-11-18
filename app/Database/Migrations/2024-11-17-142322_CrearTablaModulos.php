@@ -15,7 +15,7 @@ class CrearTablaModulos extends Migration
                 'auto_increment' => TRUE,
             ],
             'nombre_modulo'  => [
-                'type'       => 'INT',
+                'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],
         ]);
