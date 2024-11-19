@@ -36,45 +36,17 @@
                 <div class="collapse navbar-collapse" id="collapsibleNavId">
                     <ul class="navbar-nav me-auto mt-2 mt-lg-0">
 
-                        <!-- ##### Stock ##### -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('bienes/listar') ?>" aria-current="page">Bienes</a>
-                        </li>
-
-                        <!-- ##### Oficinas ##### -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('oficinas/listar') ?>">Oficinas</a>
-                        </li>
-
-                        <!-- ##### Categorías ##### -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('categorias/listar') ?>">Categorias</a>
-                        </li>
-
-                        <!-- ##### Movimientos ##### -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('estados/listar') ?>">Movimientos</a>
-                        </li>
-
-                        <!-- ##### Bitácora ##### -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('estados/listar') ?>">Bitácora</a>
-                        </li>
-
-                        <!-- ##### Estados ##### -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('estados/listar') ?>">Estados</a>
-                        </li>
-
-                        <!-- ##### Usuarios ##### -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('estados/listar') ?>">Usuarios</a>
-                        </li>
-
-                        <!-- ##### Reportes ##### -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('estados/listar') ?>">Reportes</a>
-                        </li>
+                        <!-- ##### Módulos ##### -->
+                        <?php foreach ($modulos as $registro) : ?>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="<?= base_url() ?>"
+                                    aria-current="page">
+                                    <?= $registro['nombre_modulo'] ?>
+                                </a>
+                            </li>
+                        <?php endforeach ?>
 
                     </ul>
 

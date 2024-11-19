@@ -36,7 +36,7 @@
                                 <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                     <div class="card-body p-4 p-lg-5 text-black">
 
-                                        <form>
+                                        <form action="<?= base_url('login/autenticar') ?>" method="post" enctype="multipart/form-data">
 
                                             <div class="d-flex align-items-center mb-3 pb-1">
                                                 <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
@@ -46,18 +46,41 @@
                                             <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Acceda a su cuenta</h5>
 
                                             <div data-mdb-input-init class="form-outline mb-4">
-                                                <input type="email" id="form2Example17" class="form-control form-control-lg" />
-                                                <label class="form-label" for="form2Example17">Usuario</label>
+                                                <label class="form-label" for="usuario">Usuario</label>
+                                                <input type="text" id="usuario" name="usuario" class="form-control form-control-lg" required />
                                             </div>
 
                                             <div data-mdb-input-init class="form-outline mb-4">
-                                                <input type="password" id="form2Example27" class="form-control form-control-lg" />
-                                                <label class="form-label" for="form2Example27">Contraseña</label>
+                                                <label class="form-label" for="contrasenia">Contraseña</label>
+                                                <input type="password" id="contrasenia" name="contrasenia" class="form-control form-control-lg" required />
                                             </div>
 
-                                            <div class="pt-1 mb-4">
-                                                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-lg btn-block" type="button">Iniciar sesión</button>
+                                            <div
+                                                class="row justify-content-between align-items-center g-2">
+
+                                                <!-- Botón -->
+                                                <div class="col-auto">
+                                                    <div class="pt-1 mb-4">
+                                                        <button
+                                                            data-mdb-button-init
+                                                            data-mdb-ripple-init
+                                                            class="btn btn-dark btn-lg btn-block"
+                                                            type="submit">
+                                                            Iniciar sesión
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Mostrar mensaje de error -->
+                                                <div class="col-auto">
+                                                    <?php if (session()->getFlashdata('error')) : ?>
+                                                        <div class="alert alert-danger" role="alert" id="errorMessage">
+                                                            <?= session()->getFlashdata('error') ?>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
                                             </div>
+
 
 
                                         </form>
@@ -85,6 +108,20 @@
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
+
+    <!-- jQuery para la validación de contraseña -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // Ocultar el mensaje de error después de 5 segundos
+        document.addEventListener("DOMContentLoaded", function() {
+            var errorMessage = document.getElementById('errorMessage');
+            if (errorMessage) {
+                setTimeout(function() {
+                    errorMessage.style.display = 'none';
+                }, 5000); // 5000 milisegundos = 5 segundos
+            }
+        });
+    </script>
 </body>
 
 </html>

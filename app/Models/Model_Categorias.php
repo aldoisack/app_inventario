@@ -9,7 +9,7 @@ class Model_Categorias extends Model
     protected $table      = 'categorias';
     // Uncomment below if you want add primary key
     protected $primaryKey = 'id_categoria';
-    protected $allowedFields = ['nombre_categoria'];
+    protected $allowedFields = ['nombre_categoria', 'stock'];
 
     public function obtener_registros()
     {
