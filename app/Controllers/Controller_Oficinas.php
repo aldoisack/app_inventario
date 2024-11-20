@@ -9,27 +9,21 @@ class Controller_Oficinas extends Controller
 {
     public function listar()
     {
-        $data = [
-            'oficinas' => (new Model_Oficinas())->obtener_registros(),
-            'modal_crear' => view('view_oficinas_modal_crear')
+        $datos = [
+            'oficinas'     => (new Model_Oficinas())->obtener_registros(),
+            'modal_crear'  => view('view_oficinas_modal_crear'),
+            'modal_editar' => view('view_oficinas_modal_editar'),
         ];
         return
             view('view_web_header') .
-            view('view_oficinas_listar', $data) .
+            view('view_oficinas_listar', $datos) .
             view('view_web_footer');
     }
 
     public function guardar()
     {
-        $datos = [
-            'nombre' => $this->request->getVar('nombre')
-        ];
+        $datos['nombre_oficina'] = $this->request->getVar('nombre_oficina');
         (new Model_Oficinas())->insert($datos);
-
-        $es_externo = $this->request->getVar('externo');
-
-        if (!$es_externo) { # "No es externo" = Forma parte de su formulario
-            $this->response->redirect(base_url('oficinas/listar'));
-        }
+        $this->response->redirect(base_url('oficinas/listar'));
     }
 }
