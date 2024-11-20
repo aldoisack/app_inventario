@@ -34,14 +34,24 @@
                                 <td scope="row"><?= $index + 1 ?></td>
                                 <td><?= $registro['nombre_oficina'] ?></td>
                                 <td class="col-md-4">
-                                    <a
+                                    <!-- Botón para abrir el modal Detalle -->
+                                    <button
+                                        type="button"
                                         class="btn btn-warning"
-                                        href="#"
-                                        role="button">Detalle</a>
-                                    <a
-                                        class="btn btn-info"
-                                        href="#"
-                                        role="button">Editar</a>
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalDetalle">
+                                        Detalle
+                                    </button>
+                                    <!-- Botón para abrir el modal Editar -->
+                                    <button
+                                        type="button"
+                                        class="btn btn-info btn-editar"
+                                        data-id="<?= $registro['id_oficina'] ?>"
+                                        data-nombre="<?= $registro['nombre_oficina'] ?>"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalEditar">
+                                        Editar
+                                    </button>
                                 </td>
                             </tr>
                         <?php endforeach ?>
@@ -50,14 +60,35 @@
             </div>
         </div>
     </div>
-
 </main>
 
+<!-- ------------------------------------------------------------ -->
+<!-- MODALES -->
+<!-- ------------------------------------------------------------ -->
 
+<?= $modal_crear  ?>
+<?= $modal_editar ?>
 
-<!-- ▗▖  ▗▖ ▗▄▖ ▗▄▄▄  ▗▄▖ ▗▖    -->
-<!-- ▐▛▚▞▜▌▐▌ ▐▌▐▌  █▐▌ ▐▌▐▌    -->
-<!-- ▐▌  ▐▌▐▌ ▐▌▐▌  █▐▛▀▜▌▐▌    -->
-<!-- ▐▌  ▐▌▝▚▄▞▘▐▙▄▄▀▐▌ ▐▌▐▙▄▄▖ -->
+<!-- -------------------------------------------------- -->
+<!-- jQuery -->
+<!-- -------------------------------------------------- -->
 
-<?= $modal_crear; ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Capturar el clic en el botón Editar
+        $('.btn-editar').on('click', function() {
+
+            // Obtener los datos del botón presionado
+            const id = $(this).data('id'); // ID de la oficina
+            const nombre = $(this).data('nombre'); // Nombre de la oficina
+
+            // Pasar los datos al modal
+            $('#id_oficina_modal_editar').val(id);
+            // $('#nombre_oficina_modal_editar').val(nombre);
+
+            // Actualizar el encabezado del modal
+            $('#encabezadoModalEditar').text(`${nombre}`);
+        });
+    });
+</script>

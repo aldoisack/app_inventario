@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\Model_Oficinas;
+use App\Models\Model_Usuarios;
 
 class Controller_Oficinas extends Controller
 {
@@ -24,6 +25,17 @@ class Controller_Oficinas extends Controller
     {
         $datos['nombre_oficina'] = $this->request->getVar('nombre_oficina');
         (new Model_Oficinas())->insert($datos);
+        $this->response->redirect(base_url('oficinas/listar'));
+    }
+
+    public function actualizar()
+    {
+        $datos = [
+            'id_oficina'     => $this->request->getVar('id_oficina'),
+            'nombre_oficina' => $this->request->getVar('nombre_oficina'),
+        ];
+        $modelo = new Model_Oficinas();
+        $modelo->replace($datos);
         $this->response->redirect(base_url('oficinas/listar'));
     }
 }

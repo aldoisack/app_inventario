@@ -69,6 +69,7 @@ $routes->get(
     ['filter' => 'sesion'],
 );
 $routes->post('oficinas/guardar', 'Controller_Oficinas::guardar');
+$routes->post('oficinas/actualizar', 'Controller_Oficinas::actualizar');
 
 // ---------------------------------------------
 // USUARIOS
