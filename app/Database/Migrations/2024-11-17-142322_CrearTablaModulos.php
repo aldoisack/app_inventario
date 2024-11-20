@@ -18,6 +18,10 @@ class CrearTablaModulos extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],
+            'ruta'  => [
+                'type'       => 'VARCHAR',
+                'constraint' => '100',
+            ],
         ]);
         $this->forge->addKey('id_modulo', TRUE);
         $this->forge->createTable('modulos');

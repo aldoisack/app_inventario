@@ -31,12 +31,19 @@ class Controller_Login extends Controller
         }
     }
 
+    public function logout()
+    {
+        session()->destroy();
+        return $this->response->redirect(base_url('login'));
+    }
+
     private function iniciar_sesion($usuario_correcto)
     {
         $sesion = session();
         $datos = [
             'id_usuario' => $usuario_correcto['id_usuario'],
             'id_rol' => $usuario_correcto['id_rol'],
+            'logueado' => true,
         ];
         $sesion->set($datos);
     }

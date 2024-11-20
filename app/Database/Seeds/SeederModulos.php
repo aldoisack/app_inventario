@@ -9,12 +9,30 @@ class SeederModulos extends Seeder
     public function run()
     {
         $data = [
-            ['nombre_modulo' => 'Stock'],
-            ['nombre_modulo' => 'Bienes'],
-            ['nombre_modulo' => 'Movimientos'],
-            ['nombre_modulo' => 'Bitacora'],
-            ['nombre_modulo' => 'Oficinas'],
-            ['nombre_modulo' => 'Usuarios'],
+            [
+                'nombre_modulo' => 'Stock',
+                'ruta'          => 'stock/listar',
+            ],
+            [
+                'nombre_modulo' => 'Bienes',
+                'ruta'          => 'bienes/listar',
+            ],
+            [
+                'nombre_modulo' => 'Movimientos',
+                'ruta'          => 'movimientos/listar',
+            ],
+            [
+                'nombre_modulo' => 'Bitacora',
+                'ruta'          => 'bitacora/listar',
+            ],
+            [
+                'nombre_modulo' => 'Oficinas',
+                'ruta'          => 'oficinas/listar',
+            ],
+            [
+                'nombre_modulo' => 'Usuarios',
+                'ruta'          => 'usuarios/listar',
+            ],
         ];
         $this->db->table('modulos')->insertBatch($data);
     }

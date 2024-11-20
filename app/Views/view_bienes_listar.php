@@ -1,4 +1,3 @@
-<?php print_r($bienes) ?>
 <main class=container>
     <br>
     <div class="card">
@@ -36,7 +35,7 @@
                             <tr class="">
                                 <td scope="row"><?= $number ?></td>
                                 <td><?= $registro['nombre_categoria'] ?></td>
-                                <td><?= $registro['codigo_patrimonial'] ?></td>
+                                <td><?= $registro['codigo'] ?></td>
                                 <td class="col-md-4">
                                     <a
                                         name=""
