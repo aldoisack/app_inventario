@@ -18,6 +18,9 @@ class CrearTablaOficinas extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => '100',
             ],
+            'stock' => [
+                'type' => 'INT',
+            ],
         ]);
         $this->forge->addKey('id_oficina', TRUE);
         $this->forge->createTable('oficinas');

@@ -10,13 +10,16 @@ class CrearTablaCategorias extends Migration
     {
         $this->forge->addField([
             'id_categoria' => [
-                'type' => 'INT',
-                'unsigned' => TRUE,
+                'type'           => 'INT',
+                'unsigned'       => TRUE,
                 'auto_increment' => TRUE,
             ],
             'nombre_categoria' => [
-                'type' => 'VARCHAR',
+                'type'       => 'VARCHAR',
                 'constraint' => '100',
+            ],
+            'stock' => [
+                'type' => 'INT',
             ],
         ]);
         $this->forge->addKey('id_categoria', TRUE);

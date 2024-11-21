@@ -9,33 +9,35 @@ class CrearTablaBienes extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id_bien' => [
-                'type' => 'INT',
-                'unsigned' => TRUE,
+            'id_bien'        => [
+                'type'           => 'INT',
+                'unsigned'       => TRUE,
                 'auto_increment' => TRUE,
             ],
             'id_categoria' => [
-                'type' => 'INT',
+                'type'     => 'INT',
                 'unsigned' => TRUE,
             ],
-            'codigo' => [
-                'type' => 'VARCHAR',
+            'codigo'     => [
+                'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],
             'id_estado' => [
-                'type' => 'INT',
-                'unsigned' => TRUE,
+                'type'      => 'INT',
+                'unsigned'  => TRUE,
+                'default'   => '1',
             ],
             'oficina_actual' => [
-                'type' => 'INT',
-                'unsigned' => TRUE,
+                'type'       => 'INT',
+                'unsigned'   => TRUE,
+                'default'    => '5',
             ],
             'fecha_hora_registro' => [
-                'type' => 'DATETIME',
+                'type'    => 'DATETIME',
                 'default' => new \CodeIgniter\Database\RawSql('CURRENT_TIMESTAMP'),
             ],
             'imagen' => [
-                'type' => 'VARCHAR',
+                'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],
         ]);

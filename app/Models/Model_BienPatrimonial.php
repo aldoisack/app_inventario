@@ -20,6 +20,11 @@ class Model_BienPatrimonial extends Model
 
     public function obtener_registros()
     {
-        return $this->findAll();
+        return $this
+            ->select('bienes.*, categorias.nombre_categoria, oficinas.*')
+            ->join('categorias', 'bienes.id_categoria = categorias.id_categoria')
+            ->join('oficinas', 'bienes.oficina_actual = oficinas.id_oficina')
+            ->get()
+            ->getResultArray();
     }
 }

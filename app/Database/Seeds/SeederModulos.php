@@ -11,7 +11,7 @@ class SeederModulos extends Seeder
         $data = [
             [
                 'nombre_modulo' => 'Stock',
-                'ruta'          => 'stock/listar',
+                'ruta'          => 'categorias/listar',
             ],
             [
                 'nombre_modulo' => 'Bienes',

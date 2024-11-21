@@ -22,11 +22,12 @@ $routes->get('logout', 'Controller_Login::logout');
 // ---------------------------------------------
 
 $routes->get(
-    'stock/listar',
+    'categorias/listar',
     'Controller_Categorias::listar',
     ['filter' => 'sesion']
 );
-$routes->post('stock/guardar', 'Controller_Categorias::guardar');
+$routes->post('categorias/guardar', 'Controller_Categorias::guardar');
+$routes->post('categorias/actualizar', 'Controller_Categorias::actualizar');
 
 // ---------------------------------------------
 // BIENES

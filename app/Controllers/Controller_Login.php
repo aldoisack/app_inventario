@@ -9,6 +9,13 @@ class Controller_Login extends Controller
 {
     public function index()
     {
+        $sesion = session();
+        $logueado = $sesion->get('logueado');
+
+        if ($logueado) {
+            return $this->response->redirect(base_url('categorias/listar'));
+        }
+
         return view('view_login');
     }
 
@@ -25,7 +32,7 @@ class Controller_Login extends Controller
         // Validando credenciales
         if ($usuario_correcto) {
             $this->iniciar_sesion($usuario_correcto);
-            return $this->response->redirect(base_url('stock/listar'));
+            return $this->response->redirect(base_url('categorias/listar'));
         } else {
             $this->mostrar_error('Usuario o contraseña incorrectos');
         }

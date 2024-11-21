@@ -14,5 +14,7 @@ class SeederPoblarTablas extends Seeder
         $this->call('SeederUsuarios');
         $this->call('SeederEstados');
         $this->call('SeederTiposMovimiento');
+        $this->call('SeederCategorias');
+        $this->call('SeederOficinas');
     }
 }

@@ -15,4 +15,12 @@ class Model_Categorias extends Model
     {
         return $this->findAll();
     }
+
+    public function incrementarStock($id_categoria, $cantidad = 1)
+    {
+        return $this
+            ->set('stock', "stock + $cantidad", false)
+            ->where('id_categoria', $id_categoria)
+            ->update();
+    }
 }

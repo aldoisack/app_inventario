@@ -25,6 +25,7 @@
                         <tr>
                             <th scope="col">N°</th>
                             <th scope="col">Oficina</th>
+                            <th scope="col">Total bienes</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
@@ -33,6 +34,7 @@
                             <tr>
                                 <td scope="row"><?= $index + 1 ?></td>
                                 <td><?= $registro['nombre_oficina'] ?></td>
+                                <td><?= $registro['stock'] ?></td>
                                 <td class="col-md-4">
                                     <!-- Botón para abrir el modal Detalle -->
                                     <button
@@ -68,12 +70,15 @@
 
 <?= $modal_crear  ?>
 <?= $modal_editar ?>
+<?= $modal_detalle ?>
 
-<!-- -------------------------------------------------- -->
 <!-- jQuery -->
-<!-- -------------------------------------------------- -->
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- -------------------------------------------------- -->
+<!-- MODAL EDITAR -->
+<!-- -------------------------------------------------- -->
+<!-- NOTA: Este código es para pasar los datos al modal "Editar" -->
 <script>
     $(document).ready(function() {
         // Capturar el clic en el botón Editar

@@ -14,6 +14,7 @@ class Controller_Oficinas extends Controller
             'oficinas'     => (new Model_Oficinas())->obtener_registros(),
             'modal_crear'  => view('view_oficinas_modal_crear'),
             'modal_editar' => view('view_oficinas_modal_editar'),
+            'modal_detalle' => view('view_oficinas_modal_detalle'),
         ];
         return
             view('view_web_header') .
