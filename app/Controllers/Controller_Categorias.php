@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Model_BienPatrimonial;
 use App\Models\Model_Categorias;
 use App\Models\Model_Usuarios;
 use CodeIgniter\Controller;
@@ -14,7 +15,7 @@ class Controller_Categorias extends Controller
             'categorias'    => (new Model_Categorias())->obtener_registros(),
             'modal_crear'   => view('view_categorias_modal_crear'),
             'modal_editar'  => view('view_categorias_modal_editar'),
-            'modal_detalle' => view('view_categorias_modal_editar'),
+            'modal_detalle' => view('view_categorias_modal_detalle'),
         ];
         return
             view('view_web_header') .
@@ -31,6 +32,7 @@ class Controller_Categorias extends Controller
         (new Model_Categorias())->insert($datos);
         $this->response->redirect(base_url('categorias/listar'));
     }
+
     public function actualizar()
     {
         $datos = [
@@ -40,5 +42,12 @@ class Controller_Categorias extends Controller
         $modelo = new Model_Categorias();
         $modelo->replace($datos);
         $this->response->redirect(base_url('categorias/listar'));
+    }
+
+    public function bienes_categoria($id_categoria)
+    {
+        $modelo = new Model_BienPatrimonial();
+        $bienes = $modelo->obtener_bienes_categoria($id_categoria);
+        return $this->response->setJSON($bienes);
     }
 }

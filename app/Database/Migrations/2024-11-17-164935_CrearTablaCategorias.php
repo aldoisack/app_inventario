@@ -18,9 +18,6 @@ class CrearTablaCategorias extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],
-            'stock' => [
-                'type' => 'INT',
-            ],
         ]);
         $this->forge->addKey('id_categoria', TRUE);
         $this->forge->createTable('categorias');

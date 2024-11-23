@@ -27,4 +27,12 @@ class Model_BienPatrimonial extends Model
             ->get()
             ->getResultArray();
     }
+
+    public function obtener_bienes_categoria($id_categoria)
+    {
+        return $this
+            ->where('bienes.id_categoria', $id_categoria)
+            ->where('bienes.oficina_actual', '5')
+            ->findAll();
+    }
 }

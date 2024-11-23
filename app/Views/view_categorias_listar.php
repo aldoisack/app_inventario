@@ -39,9 +39,12 @@
                                     <!-- Botón para abrir el modal Detalle -->
                                     <button
                                         type="button"
-                                        class="btn btn-warning"
+                                        class="btn btn-warning btn-detalle"
+                                        data-id="<?= $registro['id_categoria'] ?>"
+                                        data-nombre="<?= $registro['nombre_categoria'] ?>"
                                         data-bs-toggle="modal"
                                         data-bs-target="#modalDetalle">
+                                        <i class="bi bi-search"></i>
                                         Detalle
                                     </button>
                                     <!-- Botón para abrir el modal Editar -->
@@ -52,6 +55,7 @@
                                         data-nombre="<?= $registro['nombre_categoria'] ?>"
                                         data-bs-toggle="modal"
                                         data-bs-target="#modalEditar">
+                                        <i class="bi bi-pencil-square"></i>
                                         Editar
                                     </button>
                                 </td>
@@ -90,10 +94,63 @@
 
             // Pasar los datos al modal
             $('#id_oficina_modal_editar').val(id);
-            // $('#nombre_oficina_modal_editar').val(nombre);
 
             // Actualizar el encabezado del modal
             $('#encabezadoModalEditar').text(`${nombre}`);
+        });
+    });
+</script>
+
+<!-- -------------------------------------------------- -->
+<!-- MODAL DETALLE -->
+<!-- -------------------------------------------------- -->
+<!-- NOTA: Este código es para la lista de bienes en el modal "Detalle" -->
+<script>
+    $(document).ready(function() {
+        $('.btn-detalle').on('click', function() {
+            const id = $(this).data('id');
+            const nombre = $(this).data('nombre');
+            $('#encabezadoModalDetalle').text(`${nombre}`);
+            $.ajax({
+                url: `<?= base_url('bienes_categoria') ?>/${id}`,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    let contenido = '';
+                    data.forEach(function(item) {
+                        contenido += `
+                            <tr>
+                                <td scope="row">${item.codigo}</td>                                
+                                <td>
+                                    <!-- Botón para abrir el modal Editar -->
+                                    <button
+                                        type="button"
+                                        class="btn btn-warning"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalDetalle">
+                                        <i class="bi bi-search"></i>
+                                        Detalle
+                                    </button>
+                                    <!-- Botón para abrir el modal Mover -->
+                                    <button
+                                        type="button"
+                                        class="btn btn-success btn-editar"
+                                        
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalEditar">
+                                        <i class="bi bi-send"></i>
+                                        Transferir
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                    $('#contenidoModalDetalle').html(contenido);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error al obtener los datos:', error);
+                }
+            });
         });
     });
 </script>

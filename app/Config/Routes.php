@@ -28,6 +28,7 @@ $routes->get(
 );
 $routes->post('categorias/guardar', 'Controller_Categorias::guardar');
 $routes->post('categorias/actualizar', 'Controller_Categorias::actualizar');
+$routes->get('bienes_categoria/(:num)', 'Controller_Categorias::bienes_categoria/$1');
 
 // ---------------------------------------------
 // BIENES
@@ -40,6 +41,8 @@ $routes->get(
 );
 $routes->post('bienes/guardar_rapido', 'Controller_BienPatrimonial::guardar_rapido');
 $routes->post('bienes/guardar_detallado', 'Controller_BienPatrimonial::guardar_detallado');
+$routes->post('bienes/actualizar', 'Controller_BienPatrimonial::actualizar');
+$routes->post('bienes/transferir', 'Controller_BienPatrimonial::transferir');
 
 // ---------------------------------------------
 // MOVIMIENTOS

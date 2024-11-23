@@ -22,15 +22,15 @@ class CrearTablaBienes extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],
-            'id_estado' => [
-                'type'      => 'INT',
-                'unsigned'  => TRUE,
-                'default'   => '1',
-            ],
             'oficina_actual' => [
                 'type'       => 'INT',
                 'unsigned'   => TRUE,
                 'default'    => '5',
+            ],
+            'id_estado' => [
+                'type'      => 'INT',
+                'unsigned'  => TRUE,
+                'default'   => '1',
             ],
             'fecha_hora_registro' => [
                 'type'    => 'DATETIME',
