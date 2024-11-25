@@ -10,8 +10,8 @@ class Probando extends Controller
 
     public function probando()
     {
-        $data['datos'] = (new ModelsProbando())->listar();
-        return view("probando", $data);
+
+        return view("probando");
     }
 
     public function guardar()

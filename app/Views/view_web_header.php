@@ -24,6 +24,14 @@ $modulos = $sesion->get('modulos');
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Datatables -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link
+        rel="stylesheet"
+        href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
 </head>
 
 <body>
@@ -49,7 +57,7 @@ $modulos = $sesion->get('modulos');
                             <?php foreach ($modulos as $registro) : ?>
                                 <li class="nav-item">
                                     <a
-                                        class="nav-link"
+                                        class="nav-link menuDinamico"
                                         href="<?= base_url($registro['ruta']) ?>"
                                         aria-current="page">
                                         <?= $registro['nombre_modulo'] ?>

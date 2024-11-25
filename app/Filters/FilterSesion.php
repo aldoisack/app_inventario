@@ -28,7 +28,7 @@ class FilterSesion implements FilterInterface
         $sesion = session();
         $logueado = $sesion->get('logueado');
         if (!$logueado) {
-            return redirect()->to(site_url('login'));
+            return redirect()->to(site_url('singin'));
         }
     }
 

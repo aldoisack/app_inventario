@@ -13,26 +13,26 @@ class Controller_Login extends Controller
         $logueado = $sesion->get('logueado');
 
         if ($logueado) {
-            return $this->response->redirect(base_url('categorias/listar'));
+            return $this->response->redirect(base_url('main'));
         }
 
         return view('view_login');
     }
 
-    public function autenticar()
+    public function login()
     {
         // Datos del formularios
-        $usuario     = $this->request->getVar('usuario');
-        $contrasenia = $this->request->getVar('contrasenia');
+        $dato_usuario     = $this->request->getVar('usuario');
+        $dato_contrasenia = $this->request->getVar('contrasenia');
 
         // Acceso a la base de datos
-        $modelo_usuarios = new Model_Usuarios();
-        $usuario_correcto = $modelo_usuarios->verificar($usuario, $contrasenia);
+        $modelo = new Model_Usuarios();
+        $usuario_correcto = $modelo->verificar($dato_usuario, $dato_contrasenia);
 
         // Validando credenciales
         if ($usuario_correcto) {
             $this->iniciar_sesion($usuario_correcto);
-            return $this->response->redirect(base_url('categorias/listar'));
+            return $this->response->redirect(base_url('main'));
         } else {
             $this->mostrar_error('Usuario o contraseña incorrectos');
         }

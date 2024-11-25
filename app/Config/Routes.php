@@ -2,57 +2,65 @@
 
 use CodeIgniter\Router\RouteCollection;
 
+use function PHPSTORM_META\map;
+
 /**
  * @var RouteCollection $routes
  */
 
-$routes->get('probando', 'Controller_Probando::index');
+$routes->get('main', 'Home::index', ['filter' => 'sesion']);
+$routes->get('probando', 'Probando::probando');
 
 // ---------------------------------------------
-// LOGIN AND LOGOUT
+// SESIÓN
 // ---------------------------------------------
 
 $routes->get('/', 'Controller_Login::index');
-$routes->get('login', 'Controller_Login::index');
-$routes->post('login/autenticar', 'Controller_Login::autenticar');
+$routes->get('singin', 'Controller_Login::index');
+$routes->post('login', 'Controller_Login::login');
 $routes->get('logout', 'Controller_Login::logout');
 
 // ---------------------------------------------
 // STOCK
 // ---------------------------------------------
 
-$routes->get(
-    'categorias/listar',
-    'Controller_Categorias::listar',
-    ['filter' => 'sesion']
-);
+$routes->get('categorias/listar', 'Controller_Categorias::listar');
+
+$routes->get('categorias/crear', 'Controller_Categorias::crear');
 $routes->post('categorias/guardar', 'Controller_Categorias::guardar');
+
+$routes->get('categorias/editar/(:num)', 'Controller_Categorias::editar/$1');
 $routes->post('categorias/actualizar', 'Controller_Categorias::actualizar');
-$routes->get('bienes_categoria/(:num)', 'Controller_Categorias::bienes_categoria/$1');
+
+$routes->get('categorias/detalle/(:num)', 'Controller_Categorias::detalle_categoria/$1');
+$routes->get('categorias/transferir/(:num)/(:any)', 'Controller_Categorias::transferir/$1/$2');
 
 // ---------------------------------------------
 // BIENES
 // ---------------------------------------------
 
-$routes->get(
-    'bienes/listar',
-    'Controller_BienPatrimonial::listar',
-    ['filter' => 'sesion']
-);
+$routes->get('bienes/listar', 'Controller_BienPatrimonial::listar');
+
+$routes->get('bienes/crear_rapido', 'Controller_BienPatrimonial::crear_rapido');
 $routes->post('bienes/guardar_rapido', 'Controller_BienPatrimonial::guardar_rapido');
+
+$routes->get('bienes/crear_detallado', 'Controller_BienPatrimonial::crear_detallado');
 $routes->post('bienes/guardar_detallado', 'Controller_BienPatrimonial::guardar_detallado');
-$routes->post('bienes/actualizar', 'Controller_BienPatrimonial::actualizar');
-$routes->post('bienes/transferir', 'Controller_BienPatrimonial::transferir');
+
+$routes->get('bienes/editar/(:num)', 'Controller_BienPatrimonial::editar/$1');
+$routes->post('bienes/actualizar/(:num)', 'Controller_BienPatrimonial::actualizar/$1');
+
+$routes->get('bienes/transferir', 'Controller_BienPatrimonial::transferir');
+$routes->get('uploads/(:segment)', 'Controller_BienPatrimonial::buscar_imagen/$1');
+
 
 // ---------------------------------------------
 // MOVIMIENTOS
 // ---------------------------------------------
 
-$routes->get(
-    'movimientos/listar',
-    'Controller_Movimientos::listar',
-    ['filter' => 'sesion']
-);
+$routes->get('movimientos/listar', 'Controller_Movimientos::listar');
+
+$routes->post('movimientos/transferir', 'Home::transferir');
 
 // ---------------------------------------------
 // BITÁCORA
