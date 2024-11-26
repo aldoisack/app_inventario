@@ -1,13 +1,16 @@
-<div class="modal fade" id="modalDetalle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-lg">
-        <div class="modal-content">
-            <!-- Cabecera -->
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Detalle</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<form
+    action="<?= base_url('bienes/guardar_detallado') ?>"
+    method="post"
+    enctype="multipart/form-data">
+    <div class="d-flex justify-content-center">
+        <div class="card w-75">
+            <div class="card-header">
+
+                <!-- Título -->
+                <h1><b>Nuevo bien</b></h1>
+
             </div>
-            <!-- Cuerpo -->
-            <div class="modal-body">
+            <div class="card-body">
                 <div class="row justify-content-center align-items-start g-2">
                     <div class="col-md-7">
 
@@ -15,10 +18,9 @@
                         <div class="mb-3">
                             <label for="categoria" class="form-label">Categorías</label>
                             <select
-                                disabled
                                 class="form-select form-select-md"
                                 name="id_categoria"
-                                id="id_categoria-modal-detalle">
+                                id="id_categoria">
                                 <option selected>--- Selecciona una opcion ---</option>
                                 <?php foreach ($categorias as $registro) : ?>
                                     <option
@@ -33,11 +35,10 @@
                         <div class="mb-3">
                             <label for="codigo_patrimonial" class="form-label">Código patrimonial</label>
                             <input
-                                readonly
                                 type="text"
                                 class="form-control"
                                 name="codigo"
-                                id="codigo-modal-detalle"
+                                id="codigo"
                                 aria-describedby="helpId"
                                 placeholder="" />
                         </div>
@@ -47,14 +48,13 @@
                         <div class="mb-3">
                             <label for="oficina_origen" class="form-label">Oficina</label>
                             <select
-                                disabled
                                 class="form-select form-select-md selectpicker"
                                 name="oficina"
-                                id="oficina-modal-detalle">
+                                id="oficina">
                                 <option selected>--- Selecciona una opcion ---</option>
                                 <?php foreach ($oficinas as $registro) : ?>
                                     <option
-
+                                        <?= ($registro['nombre_oficina'] == 'OTI') ? 'selected' : ''; ?>
                                         value="<?= $registro['id_oficina'] ?>">
                                         <?= $registro['nombre_oficina'] ?>
                                     </option>
@@ -66,10 +66,9 @@
                         <div class="mb-3">
                             <label for="estado" class="form-label">Estado</label>
                             <select
-                                disabled
                                 class="form-select form-select-md"
                                 name="estado"
-                                id="estado-modal-detalle">
+                                id="estado">
                                 <option selected>--- Selecciona una opcion ---</option>
                                 <?php foreach ($estados as $registro) : ?>
                                     <option
@@ -81,55 +80,50 @@
                             </select>
                         </div>
 
-
-
-                        <!-- -------------------------------------------------- -->
-                        <!-- FECHA + HORA -->
-                        <!-- -------------------------------------------------- -->
                         <div class="row justify-content-center align-items-center g-2">
+
                             <!-- Fecha -->
                             <div class="col">
                                 <div class="mb-3">
                                     <label for="fecha" class="form-label">Fecha ingreso</label>
                                     <input
-                                        readonly
                                         type="date"
                                         class="form-control"
                                         name="fecha"
-                                        id="fecha-modal-detalle"
+                                        id="fecha"
                                         aria-describedby="helpId"
                                         placeholder=""
-                                        value="" />
+                                        value="<?= date('Y-m-d'); ?>" />
                                 </div>
                             </div>
+
                             <!-- Hora -->
                             <div class="col">
                                 <div class="mb-3">
                                     <label for="hora" class="form-label">Hora</label>
                                     <input
-                                        readonly
                                         type="time"
                                         class="form-control"
                                         name="hora"
-                                        id="hora-modal-detalle"
+                                        id="hora"
                                         aria-describedby="helpId"
                                         placeholder=""
-                                        value="" />
+                                        value="<?= date('H:i') ?>" />
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
-                    <!-- -------------------------------------------------- -->
-                    <!-- IMGAEN -->
-                    <!-- -------------------------------------------------- -->
+                    <!-- Imagen -->
                     <div class="col px-4">
                         <div class="mb-3">
-                            <label for="imagen" class="form-label">Imagen</label>
+                            <label for="imagen" class="form-label">Subir una imagen</label>
+                            <input class="form-control" type="file" id="imagen" name="imagen" onchange="previewImage(event)">
                         </div>
                         <div class="mb-3">
                             <img
-                                id="previewImg-modal-detalle"
+                                id="previewImg"
                                 src=""
                                 class="img-fluid rounded-top"
                                 width="100%"
@@ -137,13 +131,36 @@
                                 alt="" />
                         </div>
                     </div>
+
                 </div>
-                Historial de movimientos
             </div>
-            <!-- Pie del modal -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            <div class="card-footer text-muted">
+
+                <!-- Botón cancelar -->
+                <a
+                    class="btn btn-danger vistaDinamica"
+                    href="<?= base_url('bienes/listar') ?>"
+                    role="button">Cancelar</a>
+
+                <!-- Botón guardar -->
+                <button type="submit" class="btn btn-success formularioDinamico">Guardar</button>
+
             </div>
         </div>
     </div>
-</div>
+</form>
+
+<!-- Código para mostrar la imagen en el formulario -->
+<script>
+    function previewImage(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imgElement = document.getElementById("previewImg"); // Se refiere al id único de la imagen
+                imgElement.src = e.target.result; // Asigna la URL de la imagen cargada
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+</script>

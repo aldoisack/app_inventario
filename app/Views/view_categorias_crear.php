@@ -1,7 +1,7 @@
 <form
     action="<?= base_url('categorias/guardar') ?>"
     method="post">
-    <div class="d-flex justify-content-center ">
+    <div class="d-flex justify-content-center">
         <div class="card w-75">
             <div class="card-header">
                 <h1><b>Nueva categoría</b></h1>

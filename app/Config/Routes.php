@@ -50,8 +50,9 @@ $routes->post('bienes/guardar_detallado', 'Controller_BienPatrimonial::guardar_d
 $routes->get('bienes/editar/(:num)', 'Controller_BienPatrimonial::editar/$1');
 $routes->post('bienes/actualizar/(:num)', 'Controller_BienPatrimonial::actualizar/$1');
 
+$routes->get('bienes/detalle/(:num)', 'Controller_BienPatrimonial::detalle/$1');
 $routes->get('bienes/transferir', 'Controller_BienPatrimonial::transferir');
-$routes->get('uploads/(:segment)', 'Controller_BienPatrimonial::buscar_imagen/$1');
+$routes->get('buscar_imagen/(:segment)', 'Controller_BienPatrimonial::buscar_imagen/$1');
 
 
 // ---------------------------------------------

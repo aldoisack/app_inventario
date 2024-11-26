@@ -43,15 +43,13 @@
                                     href="<?= base_url('categorias/detalle/') . $registro['id_categoria'] ?>"
                                     role="button">
                                     <i class="bi bi-search"></i>
-                                    Detalle
-                                </a>
+                                    Detalle</a>
                                 <a
                                     class="btn btn-info vistaDinamica"
                                     href="<?= base_url('categorias/editar/') . $registro['id_categoria'] ?>"
                                     role="button">
                                     <i class="bi bi-pencil-square"></i>
-                                    Editar
-                                </a>
+                                    Editar</a>
                             </td>
                         </tr>
                     <?php endforeach ?>

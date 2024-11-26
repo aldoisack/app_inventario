@@ -87,8 +87,8 @@
 
     function exito() {
         Swal.fire({
-            title: "Good job!",
-            text: "You clicked the button!",
+            title: "Buen trabajo!",
+            text: "",
             icon: "success",
             timer: 1000, // El modal se cierra automáticamente después de 2000 milisegundos (2 segundos)
             showConfirmButton: false // Opcional: Esto oculta el botón de confirmación

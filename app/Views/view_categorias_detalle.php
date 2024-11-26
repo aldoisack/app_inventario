@@ -108,7 +108,7 @@
                     method: 'GET',
                     success: function() {
                         // Si la imagen existe, mostrarla
-                        $('#modalImagen .modal-body').html('<img src="<?= base_url('uploads') ?>/' + imagen + '" alt="Imagen del Bien" class="img-fluid">');
+                        $('#modalImagen .modal-body').html('<img src="<?= base_url('uploads') ?>/' + imagen + '" alt="Imagen del Bien" class="img-fluid rounded-top" width="100%" height="100%">');
                     },
                     error: function() {
                         // Si no existe, mostrar un mensaje alternativo

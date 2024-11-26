@@ -18,21 +18,40 @@ class Model_BienPatrimonial extends Model
         'imagen',
     ];
 
-    public function obtener_registros()
+    public function obtener_bienes_con_categoria()
     {
         return $this
-            ->select('bienes.*, categorias.nombre_categoria, oficinas.*')
-            ->join('categorias', 'bienes.id_categoria = categorias.id_categoria')
-            ->join('oficinas', 'bienes.oficina_actual = oficinas.id_oficina')
-            ->get()
-            ->getResultArray();
+            ->select(
+                '
+                bienes.id_bien,
+                bienes.codigo,
+                categorias.nombre_categoria,
+                oficinas.nombre_oficina
+                '
+            )
+            ->join('categorias', 'categorias.id_categoria = bienes.id_categoria')
+            ->join('oficinas', 'oficinas.id_oficina = bienes.oficina_actual')
+            ->findAll();
     }
 
-    public function obtener_bienes_categoria($id_categoria)
+    public function obtener_detalle($id_bien)
     {
         return $this
-            ->where('bienes.id_categoria', $id_categoria)
-            ->where('bienes.oficina_actual', '5')
-            ->findAll();
+            ->select(
+                '
+                bienes.id_bien,
+                categorias.nombre_categoria, 
+                bienes.codigo,
+                oficinas.nombre_oficina, 
+                estados.nombre_estado,
+                bienes.fecha_hora_registro,
+                bienes.imagen
+                '
+            )
+            ->join('categorias', 'categorias.id_categoria = bienes.id_categoria')
+            ->join('oficinas', 'oficinas.id_oficina = bienes.oficina_actual')
+            ->join('estados', 'estados.id_estado = bienes.id_estado')
+            ->where('bienes.id_bien', $id_bien)
+            ->first();
     }
 }
