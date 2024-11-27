@@ -15,10 +15,10 @@ $routes->get('probando', 'Probando::probando');
 // SESIÓN
 // ---------------------------------------------
 
-$routes->get('/', 'Controller_Login::index');
-$routes->get('singin', 'Controller_Login::index');
-$routes->post('login', 'Controller_Login::login');
-$routes->get('logout', 'Controller_Login::logout');
+$routes->get('/', 'Controller_Singin::index');
+$routes->get('singin', 'Controller_Singin::index');
+$routes->post('login', 'Controller_Singin::login');
+$routes->get('logout', 'Controller_Singin::logout');
 
 // ---------------------------------------------
 // STOCK
@@ -51,17 +51,11 @@ $routes->get('bienes/editar/(:num)', 'Controller_BienPatrimonial::editar/$1');
 $routes->post('bienes/actualizar/(:num)', 'Controller_BienPatrimonial::actualizar/$1');
 
 $routes->get('bienes/detalle/(:num)', 'Controller_BienPatrimonial::detalle/$1');
-$routes->get('bienes/transferir', 'Controller_BienPatrimonial::transferir');
+$routes->post('bienes/transferir', 'Controller_BienPatrimonial::transferir');
+$routes->get('bienes/movimientos', 'Controller_BienPatrimonial::movimientos');
+
 $routes->get('buscar_imagen/(:segment)', 'Controller_BienPatrimonial::buscar_imagen/$1');
 
-
-// ---------------------------------------------
-// MOVIMIENTOS
-// ---------------------------------------------
-
-$routes->get('movimientos/listar', 'Controller_Movimientos::listar');
-
-$routes->post('movimientos/transferir', 'Home::transferir');
 
 // ---------------------------------------------
 // BITÁCORA

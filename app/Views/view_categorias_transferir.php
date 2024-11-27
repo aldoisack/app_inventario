@@ -1,6 +1,5 @@
-<?= print_r($oficinas) ?>
 <form
-    action="<?= base_url('movimientos/transferir') ?>"
+    action="<?= base_url('bienes/transferir') ?>"
     method="post"
     enctype="multipart/form-data">
 
@@ -38,21 +37,15 @@
                 <!-- Imagen -->
                 <div class="mb-3">
                     <label for="imagen" class="form-label">Subir una imagen</label>
-                    <!-- <input class="form-control" type="file" id="imagen" name="imagen" onchange="previewImage(event)"> -->
-                    <div class="mb-3">
-                        <input
-                            type="file"
-                            class="form-control"
-                            name="imagen" />
-                    </div>
+                    <input class="form-control" type="file" id="imagen" name="imagen" onchange="previewImage(event)">
 
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 d-flex justify-content-center">
                     <img
                         id="previewImg"
                         src=""
-                        class="img-fluid rounded-top"
-                        width="100%"
+                        class="img-fluid rounded"
+                        width="50%"
                         height="100%"
                         alt="" />
                 </div>

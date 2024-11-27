@@ -26,21 +26,18 @@
                         name="nombre_categoria">
                 </div>
             </div>
-            <div class="card-footer text-muted d-flex justify-content-between">
-                <div></div>
-                <div>
-                    <a
-                        class="btn btn-danger vistaDinamica"
-                        href="<?= base_url('categorias/listar') ?>"
-                        role="button">
-                        Cancelar
-                    </a>
-                    <button
-                        type="submit"
-                        class="btn btn-success formularioDinamico">
-                        Guardar
-                    </button>
-                </div>
+            <div class="card-footer text-muted">
+                <a
+                    class="btn btn-danger vistaDinamica"
+                    href="<?= base_url('categorias/listar') ?>"
+                    role="button">
+                    Cancelar
+                </a>
+                <button
+                    type="submit"
+                    class="btn btn-success formularioDinamico">
+                    Guardar
+                </button>
             </div>
         </div>
     </div>

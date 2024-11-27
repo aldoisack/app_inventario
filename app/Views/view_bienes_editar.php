@@ -125,14 +125,16 @@
 
                 <!-- Imagen -->
                 <div class="col px-4">
-                    <label for="imagen" class="form-label">Imagen</label>
-                    <input
-                        type="file"
-                        class="form-control"
-                        name="imagen"
-                        id="imagen"
-                        placeholder=""
-                        aria-describedby="fileHelpId" />
+                    <div class="mb-3">
+                        <label for="imagen" class="form-label">Imagen</label>
+                        <input
+                            type="file"
+                            class="form-control"
+                            name="imagen"
+                            id="imagen"
+                            placeholder=""
+                            aria-describedby="fileHelpId" />
+                    </div>
                     <div id="previewImg" class="mb-3"></div>
                 </div>
 
@@ -156,7 +158,7 @@
                 success: function() {
 
                     // Si la imagen existe, mostrarla
-                    $('#previewImg').html('<img src="<?= base_url('uploads') ?>/' + imagen + '" alt="Imagen del Bien" class="img-fluid rounded-top" width="100%" height="100%">');
+                    $('#previewImg').html('<img src="<?= base_url('uploads') ?>/' + imagen + '" alt="Imagen del Bien" class="img-fluid rounded" width="100%" height="100%">');
 
                 },
                 error: function() {
@@ -174,15 +176,23 @@
 </script>
 
 <script>
-    function previewImage(event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const imgElement = document.getElementById("previewImg"); // Se refiere al id único de la imagen
-                imgElement.src = e.target.result; // Asigna la URL de la imagen cargada
-            };
-            reader.readAsDataURL(file);
-        }
-    }
+    $(document).ready(function() {
+        // Previsualizar la imagen seleccionada
+        $('#imagen').on('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Crear una etiqueta <img> si no existe
+                    if ($('#previewImg img').length === 0) {
+                        $('#previewImg').html('<img class="img-fluid rounded-top" alt="Previsualización de la imagen" width="100%" height="100%">');
+                    }
+
+                    // Asignar la URL de la imagen cargada
+                    $('#previewImg img').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    });
 </script>

@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\Model_Usuarios;
 use CodeIgniter\Controller;
 
-class Controller_Login extends Controller
+class Controller_Singin extends Controller
 {
     public function index()
     {
@@ -41,7 +41,7 @@ class Controller_Login extends Controller
     public function logout()
     {
         session()->destroy();
-        return $this->response->redirect(base_url('login'));
+        return $this->response->redirect(base_url('singin'));
     }
 
     private function iniciar_sesion($usuario_correcto)

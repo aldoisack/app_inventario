@@ -68,6 +68,7 @@ class Controller_BienPatrimonial extends Controller
 
         return view('view_bienes_crear_detallado', $datos);
     }
+
     public function guardar_detallado()
     {
         // Gestionando la imagen
@@ -105,6 +106,7 @@ class Controller_BienPatrimonial extends Controller
     // --------------------------------------------------
     // Sección "EDITAR"
     // --------------------------------------------------
+
     public function editar($id_bien)
     {
         $modelo_bienes     = new Model_BienPatrimonial();
@@ -121,6 +123,7 @@ class Controller_BienPatrimonial extends Controller
 
         return view('view_bienes_editar', $datos);
     }
+
     public function actualizar()
     {
         // Gestionando la imagen
@@ -160,34 +163,35 @@ class Controller_BienPatrimonial extends Controller
     // Sección EXTRAS
     // --------------------------------------------------
 
-    public function transferir($id_bien)
+    public function transferir()
     {
-        $modelo = new Model_Oficinas();
-        $datos = [
-            'id_bien' => $id_bien,
-            'oficinas' => $modelo->findAll(),
-        ];
-        return view('view_transferir', $datos);
-    }
-
-    public function transferir_backup()
-    {
+        // Gestionando la imagen (capturar y mover)
         $archivo_imagen = $this->request->getFile('imagen');
         $nombre_imagen  = $archivo_imagen->getRandomName();
         $archivo_imagen->move('../public/uploads', $nombre_imagen);
 
+        // ID del bien a actualizar
         $id_bien = $this->request->getVar('id_bien');
 
+        // Capturando los datos del formulario
         $datos = [
             'oficina_actual' => $this->request->getVar('oficina'),
-            'imagen'         => $nombre_imagen,
         ];
 
+        // Registrando la información en la base de datos
         $modelo = new Model_BienPatrimonial();
         $modelo->update($id_bien, $datos);
 
+        //Aquí va el código para la tabla movimientos
+
+
         // Redireccionando
-        $this->response->redirect(base_url('main'));
+        return $this->response->redirect(base_url('movimientos/listar'));
+    }
+
+    public function movimientos($id_bien)
+    {
+        return view('view_bienes_movimienos');
     }
 
     public function buscar_imagen($imagen)

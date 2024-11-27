@@ -125,7 +125,7 @@
                             <img
                                 id="previewImg"
                                 src=""
-                                class="img-fluid rounded-top"
+                                class="img-fluid rounded"
                                 width="100%"
                                 height="100%"
                                 alt="" />

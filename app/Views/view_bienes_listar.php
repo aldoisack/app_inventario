@@ -58,6 +58,14 @@
                                     <i class="bi bi-pencil-square"></i>
                                     Editar</a>
 
+                                <!-- Botón "Movimientos" -->
+                                <a
+                                    class="btn btn-success vistaDinamica"
+                                    href="<?= base_url('bienes/movimientos/') . $registro['id_bien'] ?>"
+                                    role="button">
+                                    <i class="bi bi-node-plus-fill"></i>
+                                    Movimientos</a>
+
                             </td>
                         </tr>
                     <?php endforeach ?>

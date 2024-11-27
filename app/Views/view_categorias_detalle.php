@@ -7,7 +7,8 @@
             <a
                 class="btn btn-danger vistaDinamica"
                 href="<?= base_url('categorias/listar') ?>"
-                role="button">Regresar</a>
+                role="button">
+                <i class="bi bi-box-arrow-in-left"></i> Regresar</a>
         </div>
     </div>
     <div class="card-body">
@@ -46,16 +47,12 @@
                                     data-bs-target="#modalImagen"
                                     data-codigo="<?= $bien['codigo'] ?>"
                                     data-imagen="<?= $bien['imagen'] ?>">
-                                    <i class="bi bi-image"></i>
-                                    Imagen
-                                </button>
+                                    <i class="bi bi-image"></i> Imagen</button>
                                 <a
                                     class="btn btn-success vistaDinamica"
                                     href="<?= base_url('categorias/transferir/') . $bien['id_bien'] . '/' . $categoria['id_categoria'] ?>"
                                     role="button">
-                                    <i class="bi bi-send"></i>
-                                    Transferir
-                                </a>
+                                    <i class="bi bi-send"></i> Transferir</a>
                             </td>
                         </tr>
                     <?php endforeach ?>

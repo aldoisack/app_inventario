@@ -12,6 +12,16 @@
     $(document).on('click', '.menuDinamico, .vistaDinamica', function(e) {
         e.preventDefault();
         let ruta = $(this).attr('href');
+
+        // Si es un enlace del menú, gestionar el estado "activo"
+        if ($(this).hasClass('menuDinamico')) {
+            // Quitar la clase 'active' de todos los enlaces del menú
+            $('.menuDinamico').removeClass('active');
+
+            // Agregar la clase 'active' al enlace clicado
+            $(this).addClass('active');
+        }
+
         $.ajax({
             url: ruta,
             method: 'GET',
@@ -21,7 +31,7 @@
                     // exito();
                     $('#contenidoDinamico').html(response);
                     inicializarDataTables();
-                }, 750);
+                }, 250);
 
             }
         });
@@ -48,7 +58,7 @@
                     exito();
                     $('#contenidoDinamico').html(response);
                     inicializarDataTables();
-                }, 750);
+                }, 250);
             },
             error: function(xhr, status, error) {
                 console.error('Error en la solicitud:', error);
@@ -66,7 +76,7 @@
         Swal.fire({
             title: "",
             html: "",
-            timer: 500,
+            timer: 250,
             didOpen: () => {
                 Swal.showLoading();
                 const timer = Swal.getPopup().querySelector("b");
@@ -90,7 +100,7 @@
             title: "Buen trabajo!",
             text: "",
             icon: "success",
-            timer: 1000, // El modal se cierra automáticamente después de 2000 milisegundos (2 segundos)
+            timer: 1000, // El modal se cierra automáticamente después de 1000 milisegundos (1 segundos)
             showConfirmButton: false // Opcional: Esto oculta el botón de confirmación
         });
     }

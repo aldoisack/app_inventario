@@ -32,6 +32,12 @@ $modulos = $sesion->get('modulos');
     <link
         rel="stylesheet"
         href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
+
+    <!-- Mis estilos -->
+    <link
+        rel="stylesheet"
+        href="<?= base_url('/css/mis_estilos.css') ?>">
+
 </head>
 
 <body>
@@ -39,7 +45,7 @@ $modulos = $sesion->get('modulos');
         <nav
             class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand">OTI</a>
+                <a class="navbar-brand"><b>OTI</b></a>
                 <button
                     class="navbar-toggler d-lg-none"
                     type="button"
@@ -52,16 +58,19 @@ $modulos = $sesion->get('modulos');
                 </button>
                 <div class="collapse navbar-collapse" id="collapsibleNavId">
                     <div class="d-flex flex-column flex-lg-row justify-content-between w-100 align-items-start align-items-lg-center">
+
                         <!-- Módulos -->
                         <ul class="navbar-nav d-flex flex-column flex-lg-row">
                             <?php foreach ($modulos as $registro) : ?>
                                 <li class="nav-item">
-                                    <a
-                                        class="nav-link menuDinamico"
-                                        href="<?= base_url($registro['ruta']) ?>"
-                                        aria-current="page">
-                                        <?= $registro['nombre_modulo'] ?>
-                                    </a>
+                                    <b>
+                                        <a
+                                            class="nav-link menuDinamico"
+                                            href="<?= base_url($registro['ruta']) ?>"
+                                            aria-current="page">
+                                            <?= $registro['nombre_modulo'] ?>
+                                        </a>
+                                    </b>
                                 </li>
                             <?php endforeach ?>
                         </ul>
@@ -70,18 +79,10 @@ $modulos = $sesion->get('modulos');
                         <ul class="navbar-nav d-flex flex-column flex-lg-row">
                             <li class="nav-item">
                                 <a
-                                    class="nav-link"
-                                    href="<?= base_url('perfil') ?>"
-                                    aria-current="page">
-                                    Cuenta
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a
-                                    class="nav-link"
+                                    class="nav-link active"
                                     href="<?= base_url('logout') ?>"
                                     aria-current="page">
-                                    Cerrar sesión
+                                    <b>Cerrar sesión</b>
                                 </a>
                             </li>
                         </ul>
