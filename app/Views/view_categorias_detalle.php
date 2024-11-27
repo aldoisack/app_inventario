@@ -8,7 +8,8 @@
                 class="btn btn-danger vistaDinamica"
                 href="<?= base_url('categorias/listar') ?>"
                 role="button">
-                <i class="bi bi-box-arrow-in-left"></i> Regresar</a>
+                <i class="bi bi-box-arrow-in-left"></i>
+                Regresar</a>
         </div>
     </div>
     <div class="card-body">

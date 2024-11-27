@@ -191,7 +191,7 @@ class Controller_BienPatrimonial extends Controller
 
     public function movimientos($id_bien)
     {
-        return view('view_bienes_movimienos');
+        return view('view_bienes_movimientos');
     }
 
     public function buscar_imagen($imagen)

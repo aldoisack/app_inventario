@@ -52,7 +52,7 @@ $routes->post('bienes/actualizar/(:num)', 'Controller_BienPatrimonial::actualiza
 
 $routes->get('bienes/detalle/(:num)', 'Controller_BienPatrimonial::detalle/$1');
 $routes->post('bienes/transferir', 'Controller_BienPatrimonial::transferir');
-$routes->get('bienes/movimientos', 'Controller_BienPatrimonial::movimientos');
+$routes->get('bienes/movimientos/(:num)', 'Controller_BienPatrimonial::movimientos/$1');
 
 $routes->get('buscar_imagen/(:segment)', 'Controller_BienPatrimonial::buscar_imagen/$1');
 

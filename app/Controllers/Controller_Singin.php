@@ -16,7 +16,7 @@ class Controller_Singin extends Controller
             return $this->response->redirect(base_url('main'));
         }
 
-        return view('view_login');
+        return view('view_web_login');
     }
 
     public function login()
