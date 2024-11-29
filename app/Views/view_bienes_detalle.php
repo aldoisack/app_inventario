@@ -113,7 +113,7 @@
                 success: function() {
 
                     // Si la imagen existe, mostrarla
-                    $('#previewImg').html('<img src="<?= base_url('uploads') ?>/' + imagen + '" alt="Imagen del Bien" class="img-fluid rounded-top" width="100%" height="100%">');
+                    $('#previewImg').html('<img src="<?= base_url('uploads') ?>/' + imagen + '" alt="Imagen del Bien" class="img-fluid rounded" width="100%" height="100%">');
 
                 },
                 error: function() {

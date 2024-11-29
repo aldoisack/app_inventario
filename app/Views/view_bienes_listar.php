@@ -11,15 +11,10 @@
                 href="<?= base_url('bienes/crear_rapido') ?>"
                 role="button">
                 <i class="bi bi-file-earmark-plus-fill"></i>
-                Agregar rapido</a>
-            <a
-                class="btn btn-primary vistaDinamica"
-                href="<?= base_url('bienes/crear_detallado') ?>"
-                role="button">
-                <i class="bi bi-node-plus-fill"></i>
-                Agregar detallado</a>
+                Agregar</a>
         </div>
     </div>
+
     <!-- Cuerpo -->
     <div class="card-body">
         <div class="table-responsive">

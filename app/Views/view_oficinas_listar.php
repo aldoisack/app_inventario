@@ -1,99 +1,69 @@
-<main class=container>
-    <br>
-    <div class="card">
-        <!-- Encabezado -->
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <div>
-                <h1><b>Oficinas</b></h1>
-            </div>
-            <div>
-                <!-- Botón para abrir el modal -->
-                <button
-                    type="button"
-                    class="btn btn-primary"
-                    data-bs-toggle="modal"
-                    data-bs-target="#modalCrear">
-                    Agregar
-                </button>
-            </div>
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+
+        <!-- Título -->
+        <div>
+            <h1><b>Oficinas</b></h1>
         </div>
-        <!-- Cuerpo -->
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
+
+        <!-- Botón "Agregar" -->
+        <div>
+            <a
+                class="btn btn-primary vistaDinamica"
+                href="<?= base_url('oficinas/crear') ?>"
+                role="button">
+                <i class="bi bi-file-earmark-plus-fill"></i>
+                Agregar</a>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="tabla" class="table">
+                <thead>
+                    <tr>
+                        <th class="col-md-1" scope="col">#</th>
+                        <th scope="col">Oficina</th>
+                        <th scope="col">Total bienes</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($oficinas as $index => $oficina) : ?>
                         <tr>
-                            <th scope="col">N°</th>
-                            <th scope="col">Oficina</th>
-                            <th scope="col">Total bienes</th>
-                            <th scope="col">Acciones</th>
+
+                            <!-- # -->
+                            <td scope="row"><?= $index + 1 ?></td>
+
+                            <!-- Nombre oficina -->
+                            <td><?= $oficina['nombre_oficina'] ?></td>
+
+                            <!-- Total bienes -->
+                            <td><?= $oficina['total_bienes'] ?></td>
+
+                            <td class="col-md-4">
+
+                                <!-- Botón "Detalle" -->
+                                <a
+                                    class="btn btn-warning vistaDinamica"
+                                    href="<?= base_url('oficinas/detalle/') . $oficina['id_oficina'] . '/' . $oficina['nombre_oficina'] ?>"
+                                    role="button">
+                                    <i class="bi bi-search"></i>
+                                    Detalle</a>
+
+                                <!-- Botón "Editar" -->
+                                <a
+                                    class="btn btn-info vistaDinamica"
+                                    href="<?= base_url('oficinas/editar/') . $oficina['id_oficina']  ?>"
+                                    role="button">
+                                    <i class="bi bi-pencil-square"></i>
+                                    Editar</a>
+
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($oficinas as $index => $registro) : ?>
-                            <tr>
-                                <td scope="row"><?= $index + 1 ?></td>
-                                <td><?= $registro['nombre_oficina'] ?></td>
-                                <td><?= $registro['stock'] ?></td>
-                                <td class="col-md-4">
-                                    <!-- Botón para abrir el modal Detalle -->
-                                    <button
-                                        type="button"
-                                        class="btn btn-warning"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalDetalle">
-                                        Detalle
-                                    </button>
-                                    <!-- Botón para abrir el modal Editar -->
-                                    <button
-                                        type="button"
-                                        class="btn btn-info btn-editar"
-                                        data-id="<?= $registro['id_oficina'] ?>"
-                                        data-nombre="<?= $registro['nombre_oficina'] ?>"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalEditar">
-                                        Editar
-                                    </button>
-                                </td>
-                            </tr>
-                        <?php endforeach ?>
-                    </tbody>
-                </table>
-            </div>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
         </div>
     </div>
-</main>
-
-<!-- ------------------------------------------------------------ -->
-<!-- MODALES -->
-<!-- ------------------------------------------------------------ -->
-
-<?= $modal_crear  ?>
-<?= $modal_editar ?>
-<?= $modal_detalle ?>
-
-<!-- jQuery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-<!-- -------------------------------------------------- -->
-<!-- MODAL EDITAR -->
-<!-- -------------------------------------------------- -->
-<!-- NOTA: Este código es para pasar los datos al modal "Editar" -->
-<script>
-    $(document).ready(function() {
-        // Capturar el clic en el botón Editar
-        $('.btn-editar').on('click', function() {
-
-            // Obtener los datos del botón presionado
-            const id = $(this).data('id'); // ID de la oficina
-            const nombre = $(this).data('nombre'); // Nombre de la oficina
-
-            // Pasar los datos al modal
-            $('#id_oficina_modal_editar').val(id);
-            // $('#nombre_oficina_modal_editar').val(nombre);
-
-            // Actualizar el encabezado del modal
-            $('#encabezadoModalEditar').text(`${nombre}`);
-        });
-    });
-</script>
+</div>

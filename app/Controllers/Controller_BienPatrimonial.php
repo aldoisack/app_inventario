@@ -6,8 +6,12 @@ use CodeIgniter\Controller;
 use App\Models\Model_BienPatrimonial;
 use App\Models\Model_Categorias;
 use App\Models\Model_Estados;
+use App\Models\Model_Movimientos;
 use App\Models\Model_Oficinas;
+use App\Models\Model_Bitacora;
 use CodeIgniter\Model;
+
+use function PHPSTORM_META\map;
 
 class Controller_BienPatrimonial extends Controller
 {
@@ -38,12 +42,55 @@ class Controller_BienPatrimonial extends Controller
         // Recorre el array y guarda en la base de datos
         foreach ($categorias as $index => $categorias) {
             $datos = [
-                'id_categoria' => $categorias,
-                'codigo'       => $codigos[$index],
+                'id_categoria' => strtoupper(trim($categorias)),
+                'codigo'       => strtoupper(trim($codigos[$index])),
                 'imagen'       => '',
             ];
             $modelo = new Model_BienPatrimonial();
             $modelo->insert($datos);
+
+            // ----- REGISTRANDO MOVIMIENTO -----
+
+            $modelo_oficinas = new Model_Oficinas();
+            $oficina = $modelo_oficinas->where('nombre_oficina', 'OTI')->first();
+            $id_oficina = $oficina['id_oficina'];
+
+            $sesion = session();
+            $id_usuario = $sesion->get('id_usuario');
+
+            $datos['id_bien']            = $modelo->getInsertID();
+            $datos['id_tipo_movimiento'] = '1';
+            $datos['oficina_origen']     = $id_oficina; // OTI
+            $datos['oficina_destino']    = $id_oficina; // OTI
+            $datos['id_usuario']         = $id_usuario;
+
+            $modelo_movimientos = new Model_Movimientos();
+            $modelo_movimientos->insert($datos);
+
+            // ----- REGISTRANDO BITÁCORA ----
+
+            // id_usuario
+            $sesion = session();
+            $id_usuario = $sesion->get('id_usuario');
+
+            // Acción
+            $accion = 'CREÓ';
+
+            // Registro
+            $registro = $modelo->getInsertID();
+
+            // Tabla
+            $tabla = 'bienes';
+
+            // Insertando datos
+            $datos = [
+                'id_usuario' => $id_usuario,
+                'accion' => $accion,
+                'registro' => $registro,
+                'tabla' => $tabla
+            ];
+            $modelo_bitacora = new Model_Bitacora();
+            $modelo_bitacora->insert($datos);
         }
 
         // Redireccionando
@@ -71,10 +118,13 @@ class Controller_BienPatrimonial extends Controller
 
     public function guardar_detallado()
     {
+        // ----- REGISTRANDO BIEN -----
+
         // Gestionando la imagen
         $archivo_imagen = $this->request->getFile('imagen');
         $nombre_imagen  = $archivo_imagen->getRandomName();
         $archivo_imagen->move('../public/uploads', $nombre_imagen);
+
 
         // Registrando datos
         $datos = [
@@ -87,6 +137,25 @@ class Controller_BienPatrimonial extends Controller
 
         $modelo = new Model_BienPatrimonial();
         $modelo->insert($datos);
+
+        // ----- REGISTRANDO MOVIMIENTO -----
+
+        $modelo_oficinas = new Model_Oficinas();
+        $oficina = $modelo_oficinas->where('nombre_oficina', 'OTI')->first();
+        $id_oficina = $oficina['id_oficina'];
+
+        $sesion = session();
+        $id_usuario = $sesion->get('id_usuario');
+
+        $datos['id_bien']            = $modelo->getInsertID();
+        $datos['id_tipo_movimiento'] = '1';
+        $datos['oficina_origen']     = $this->request->getVar('oficina');
+        $datos['oficina_destino']    = $id_oficina;
+        $datos['id_usuario']         = $id_usuario;
+
+        $modelo = new Model_Movimientos();
+        $modelo->insert($datos);
+
 
         // Redireccionando
         return $this->response->redirect(base_url('bienes/listar'));
@@ -137,10 +206,10 @@ class Controller_BienPatrimonial extends Controller
 
 
         // Registrando datos
+        $id_bien = $this->request->getVar('id_bien');
         $id_categoria = $this->request->getVar('id_categoria');
-        $id_oficina   = $this->request->getVar('oficina');
+        $id_oficina   = $this->request->getVar('oficina_actual');
         $datos = [
-            'id_bien'             => $this->request->getVar('id_bien'),
             'id_categoria'        => $id_categoria,
             'codigo'              => $this->request->getVar('codigo'),
             'oficina_actual'      => $id_oficina,
@@ -151,9 +220,32 @@ class Controller_BienPatrimonial extends Controller
 
 
         $modelo = new Model_BienPatrimonial();
-        $modelo->replace($datos);
+        $modelo->update($id_bien, $datos);
 
+        // ----- REGISTRANDO BITÁCORA ----
 
+        // id_usuario
+        $sesion = session();
+        $id_usuario = $sesion->get('id_usuario');
+
+        // Acción
+        $accion = 'EDITÓ';
+
+        // Registro
+        $registro = $id_bien;
+
+        // Tabla
+        $tabla = 'bienes';
+
+        // Insertando datos
+        $datos = [
+            'id_usuario' => $id_usuario,
+            'accion' => $accion,
+            'registro' => $registro,
+            'tabla' => $tabla
+        ];
+        $modelo_bitacora = new Model_Bitacora();
+        $modelo_bitacora->insert($datos);
 
         // Redireccionando
         $this->response->redirect(base_url('bienes/listar'));
@@ -165,6 +257,8 @@ class Controller_BienPatrimonial extends Controller
 
     public function transferir()
     {
+        $modelo = new Model_BienPatrimonial();
+
         // Gestionando la imagen (capturar y mover)
         $archivo_imagen = $this->request->getFile('imagen');
         $nombre_imagen  = $archivo_imagen->getRandomName();
@@ -173,25 +267,67 @@ class Controller_BienPatrimonial extends Controller
         // ID del bien a actualizar
         $id_bien = $this->request->getVar('id_bien');
 
+        ##############################################################
+        ###### Este código servirá para registrar el movimiento ######
+        $bien           = $modelo->where('id_bien', $id_bien)->first();
+        $oficina_origen = $bien['oficina_actual'];
+        $id_usuario     = session()->get('id_usuario');
+        ##############################################################
+
+        $oficina_destino = $this->request->getVar('oficina');
+
         // Capturando los datos del formulario
+        $oficina_actual['oficina_actual'] = $oficina_destino;
+        $modelo->update($id_bien, $oficina_actual);
+
+        // ----- REGISTRANDO MOVIMIENTO -----
+
         $datos = [
-            'oficina_actual' => $this->request->getVar('oficina'),
+            'id_bien'            => $id_bien,
+            'id_tipo_movimiento' => '2',
+            'oficina_origen'     => $oficina_origen,
+            'oficina_destino'    => $oficina_destino,
+            'imagen'             => $nombre_imagen,
+            'id_usuario'         => $id_usuario
         ];
 
-        // Registrando la información en la base de datos
-        $modelo = new Model_BienPatrimonial();
-        $modelo->update($id_bien, $datos);
+        $modelo = new Model_Movimientos();
+        $modelo->insert($datos);
 
-        //Aquí va el código para la tabla movimientos
+        // ----- REGISTRANDO BITÁCORA ----
 
+        // id_usuario
+        $sesion = session();
+        $id_usuario = $sesion->get('id_usuario');
+
+        // Acción
+        $accion = 'TRANSFIRIÓ';
+
+        // Registro
+        $registro = $id_bien;
+
+        // Tabla
+        $tabla = 'bienes';
+
+        // Insertando datos
+        $datos = [
+            'id_usuario' => $id_usuario,
+            'accion' => $accion,
+            'registro' => $registro,
+            'tabla' => $tabla
+        ];
+        $modelo_bitacora = new Model_Bitacora();
+        $modelo_bitacora->insert($datos);
 
         // Redireccionando
-        return $this->response->redirect(base_url('movimientos/listar'));
+        return $this->response->redirect(base_url('categorias/listar'));
     }
 
     public function movimientos($id_bien)
     {
-        return view('view_bienes_movimientos');
+        $modelo = new Model_Movimientos();
+        $movimientos['movimientos'] = $modelo->obtener_movimientos($id_bien);
+        return view('view_bienes_movimientos', $movimientos);
     }
 
     public function buscar_imagen($imagen)

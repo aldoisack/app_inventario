@@ -48,7 +48,7 @@ $routes->get('bienes/crear_detallado', 'Controller_BienPatrimonial::crear_detall
 $routes->post('bienes/guardar_detallado', 'Controller_BienPatrimonial::guardar_detallado');
 
 $routes->get('bienes/editar/(:num)', 'Controller_BienPatrimonial::editar/$1');
-$routes->post('bienes/actualizar/(:num)', 'Controller_BienPatrimonial::actualizar/$1');
+$routes->post('bienes/actualizar', 'Controller_BienPatrimonial::actualizar');
 
 $routes->get('bienes/detalle/(:num)', 'Controller_BienPatrimonial::detalle/$1');
 $routes->post('bienes/transferir', 'Controller_BienPatrimonial::transferir');
@@ -61,22 +61,19 @@ $routes->get('buscar_imagen/(:segment)', 'Controller_BienPatrimonial::buscar_ima
 // BITÁCORA
 // ---------------------------------------------
 
-$routes->get(
-    'bitacora/listar',
-    'Controller_Bitacora::listar',
-    ['filter' => 'sesion']
-);
+$routes->get('bitacora/listar', 'Controller_Bitacora::listar');
 
 // ---------------------------------------------
 // OFICINAS
 // ---------------------------------------------
-$routes->get(
-    'oficinas/listar',
-    'Controller_Oficinas::listar',
-    ['filter' => 'sesion'],
-);
+$routes->get('oficinas/listar', 'Controller_Oficinas::listar');
+
+$routes->get('oficinas/crear', 'Controller_Oficinas::crear');
 $routes->post('oficinas/guardar', 'Controller_Oficinas::guardar');
+
 $routes->post('oficinas/actualizar', 'Controller_Oficinas::actualizar');
+
+$routes->get('oficinas/detalle/(:num)/(:any)', 'Controller_Oficinas::detalle/$1/$2');
 
 // ---------------------------------------------
 // USUARIOS

@@ -14,10 +14,6 @@ class CreatTablaMovimientos extends Migration
                 'unsigned' => TRUE,
                 'auto_increment' => TRUE,
             ],
-            'id_categoria' => [
-                'type' => 'INT',
-                'unsigned' => TRUE,
-            ],
             'id_bien' => [
                 'type' => 'INT',
                 'unsigned' => TRUE,
@@ -42,13 +38,17 @@ class CreatTablaMovimientos extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => '100',
             ],
+            'id_usuario' => [
+                'type' => 'INT',
+                'unsigned' => TRUE,
+            ],
         ]);
         $this->forge->addKey('id_movimiento', TRUE);
-        $this->forge->addForeignKey('id_categoria', 'categorias', 'id_categoria');
         $this->forge->addForeignKey('id_bien', 'bienes', 'id_bien');
         $this->forge->addForeignKey('id_tipo_movimiento', 'tipos_movimientos', 'id_tipo_movimiento');
         $this->forge->addForeignKey('oficina_origen', 'oficinas', 'id_oficina');
         $this->forge->addForeignKey('oficina_destino', 'oficinas', 'id_oficina');
+        $this->forge->addForeignKey('id_usuario', 'usuarios', 'id_usuario');
         $this->forge->createTable('movimientos');
     }
 

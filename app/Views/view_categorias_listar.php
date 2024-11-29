@@ -25,7 +25,7 @@
                 id="tabla">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col-md-1">#</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Stock</th>
                         <th scope="col">Acciones</th>
@@ -34,10 +34,10 @@
                 <tbody>
                     <?php foreach ($categorias as $index => $registro) : ?>
                         <tr>
-                            <td scope="row"><?= $index + 1 ?></td>
+                            <td class="col-md-1" scope="row"><?= $index + 1 ?></td>
                             <td><?= $registro['nombre_categoria'] ?></td>
                             <td><?= $registro['stock'] ?></td>
-                            <td>
+                            <td class="col-md-4">
                                 <a
                                     class="btn btn-warning vistaDinamica"
                                     href="<?= base_url('categorias/detalle/') . $registro['id_categoria'] ?>"

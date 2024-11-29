@@ -1,9 +1,27 @@
 <form action="<?= base_url('bienes/guardar_rapido') ?>" method="post">
     <div class="d-flex justify-content-center">
         <div class="card w-75">
-            <div class="card-header">
-                <h1><b>Agregar bien</b></h1>
+
+            <!-- Encabezado -->
+            <div class="card-header d-flex justify-content-between align-items-center">
+
+                <!-- Título -->
+                <div>
+                    <h1><b>Agregar bien</b></h1>
+                </div>
+
+                <!-- Botón "Agregar detallado" -->
+                <div>
+                    <a
+                        class="btn btn-primary vistaDinamica"
+                        href="<?= base_url('bienes/crear_detallado') ?>"
+                        role="button">
+                        <i class="bi bi-card-checklist"></i>
+                        Agregar detallado</a>
+                </div>
+
             </div>
+
             <div class="card-body">
 
                 <!-- Botones "Agregar", "Remover"-->

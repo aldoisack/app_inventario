@@ -18,11 +18,15 @@ class CrearTablaBitacora extends Migration
                 'type' => 'INT',
                 'unsigned' => TRUE,
             ],
-            'id_bien' => [
+            'accion' => [
+                'type' => 'VARCHAR',
+                'constraint' => '100',
+            ],
+            'registro' => [
                 'type' => 'INT',
                 'unsigned' => TRUE,
             ],
-            'accion' => [
+            'tabla' => [
                 'type' => 'VARCHAR',
                 'constraint' => '100',
             ],
@@ -33,7 +37,6 @@ class CrearTablaBitacora extends Migration
         ]);
         $this->forge->addKey('id_bitacora', TRUE);
         $this->forge->addForeignKey('id_usuario', 'usuarios', 'id_usuario');
-        $this->forge->addForeignKey('id_bien', 'bienes', 'id_bien');
         $this->forge->createTable('bitacora');
     }
 

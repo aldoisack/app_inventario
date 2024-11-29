@@ -18,10 +18,6 @@ class SeederModulos extends Seeder
                 'ruta'          => 'bienes/listar',
             ],
             [
-                'nombre_modulo' => 'Movimientos',
-                'ruta'          => 'movimientos/listar',
-            ],
-            [
                 'nombre_modulo' => 'Bitacora',
                 'ruta'          => 'bitacora/listar',
             ],

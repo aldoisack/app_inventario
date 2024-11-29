@@ -4,12 +4,27 @@
     enctype="multipart/form-data">
     <div class="d-flex justify-content-center">
         <div class="card w-75">
-            <div class="card-header">
+
+            <!-- Encabezado -->
+            <div class="card-header d-flex justify-content-between align-items-center">
 
                 <!-- Título -->
-                <h1><b>Nuevo bien</b></h1>
+                <div>
+                    <h1><b>Nuevo bien</b></h1>
+                </div>
+
+                <!-- Botón "Agregar simple" -->
+                <div>
+                    <a
+                        class="btn btn-primary vistaDinamica"
+                        href="<?= base_url('bienes/crear_rapido') ?>"
+                        role="button">
+                        <i class="bi bi-file-earmark-plus-fill"></i>
+                        Agregar rapido</a>
+                </div>
 
             </div>
+
             <div class="card-body">
                 <div class="row justify-content-center align-items-start g-2">
                     <div class="col-md-7">
@@ -18,10 +33,11 @@
                         <div class="mb-3">
                             <label for="categoria" class="form-label">Categorías</label>
                             <select
+                                required
                                 class="form-select form-select-md"
                                 name="id_categoria"
                                 id="id_categoria">
-                                <option selected>--- Selecciona una opcion ---</option>
+                                <option value="" selected>--- Selecciona una opcion ---</option>
                                 <?php foreach ($categorias as $registro) : ?>
                                     <option
                                         value="<?= $registro['id_categoria'] ?>">
@@ -35,6 +51,7 @@
                         <div class="mb-3">
                             <label for="codigo_patrimonial" class="form-label">Código patrimonial</label>
                             <input
+                                required
                                 type="text"
                                 class="form-control"
                                 name="codigo"
@@ -119,7 +136,7 @@
                     <div class="col px-4">
                         <div class="mb-3">
                             <label for="imagen" class="form-label">Subir una imagen</label>
-                            <input class="form-control" type="file" id="imagen" name="imagen" onchange="previewImage(event)">
+                            <input required class="form-control" type="file" id="imagen" name="imagen" onchange="previewImage(event)">
                         </div>
                         <div class="mb-3">
                             <img

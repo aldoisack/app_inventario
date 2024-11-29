@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Model_BienPatrimonial;
+use App\Models\Model_Bitacora;
 use App\Models\Model_Categorias;
 use App\Models\Model_Oficinas;
 use App\Models\Model_Usuarios;
@@ -28,9 +29,35 @@ class Controller_Categorias extends Controller
 
     public function guardar()
     {
-        $nombre_categoria['nombre_categoria'] = $this->request->getVar('nombre_categoria');
+        $nombre_categoria['nombre_categoria'] = strtoupper(trim($this->request->getVar('nombre_categoria')));
         $modelo = new Model_Categorias();
         $modelo->insert($nombre_categoria);
+
+        // ----- REGISTRANDO BITÁCORA ----
+
+        // id_usuario
+        $sesion = session();
+        $id_usuario = $sesion->get('id_usuario');
+
+        // Acción
+        $accion = 'CREÓ';
+
+        // Registro
+        $registro = $modelo->getInsertID();
+
+        // Tabla
+        $tabla = 'categorias';
+
+        // Insertando datos
+        $datos = [
+            'id_usuario' => $id_usuario,
+            'accion' => $accion,
+            'registro' => $registro,
+            'tabla' => $tabla
+        ];
+        $modelo_bitacora = new Model_Bitacora();
+        $modelo_bitacora->insert($datos);
+
         return $this->response->redirect(base_url('categorias/listar'));
     }
 
@@ -48,9 +75,35 @@ class Controller_Categorias extends Controller
     public function actualizar()
     {
         $id_categoria = $this->request->getVar('id_categoria');
-        $nombre_categoria['nombre_categoria'] = $this->request->getVar('nombre_categoria');
+        $nombre_categoria['nombre_categoria'] = strtoupper(trim($this->request->getVar('nombre_categoria')));
         $modelo = new Model_Categorias();
         $modelo->update($id_categoria, $nombre_categoria);
+
+        // ----- REGISTRANDO BITÁCORA ----
+
+        // id_usuario
+        $sesion = session();
+        $id_usuario = $sesion->get('id_usuario');
+
+        // Acción
+        $accion = 'EDITÓ';
+
+        // Registro
+        $registro = $id_categoria;
+
+        // Tabla
+        $tabla = 'categorias';
+
+        // Insertando datos
+        $datos = [
+            'id_usuario' => $id_usuario,
+            'accion' => $accion,
+            'registro' => $registro,
+            'tabla' => $tabla
+        ];
+        $modelo_bitacora = new Model_Bitacora();
+        $modelo_bitacora->insert($datos);
+
         return $this->response->redirect(base_url('categorias/listar'));
     }
 

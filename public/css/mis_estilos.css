@@ -1,3 +1,31 @@
 .nav-link.active {
     color: white !important;
 }
+
+.etiqueta {
+    font-weight: bold;
+    font-size: 0.75rem;
+    color: white;
+    border-radius: 0.5rem;
+    width: fit-content;
+    height: fit-content;
+    padding-inline: 0.5rem;
+}
+
+.etiqueta.entrada {
+    background-color: green;
+}
+
+.etiqueta.salida {
+    background-color: orange;
+    border-color: orange;
+}
+
+.etiqueta::before {
+    content: "● ";
+}
+
+#tabla tbody td,
+#tabla thead th {
+    text-align: left;
+}

@@ -40,21 +40,24 @@
     $(document).on('click', '.formularioDinamico', function(e) {
         e.preventDefault();
 
-        let form = $(this).closest('form');
-        let ruta = form.attr('action');
+        let form = $(this).closest('form')[0]; // Obtener el formulario como objeto DOM
+        if (!form.checkValidity()) {
+            form.reportValidity(); // Mostrar mensajes de validación nativos
+            return; // Detener la ejecución si no es válido
+        }
 
-        // Crear un objeto FormData para incluir todos los campos, incluyendo archivos
-        let formData = new FormData(form[0]);
+        let ruta = $(form).attr('action');
+        let formData = new FormData(form);
 
         $.ajax({
             url: ruta,
             method: 'POST',
             data: formData,
-            processData: false, // Evita que jQuery procese los datos
-            contentType: false, // Evita que jQuery establezca el content-type
+            processData: false,
+            contentType: false,
             success: function(response) {
                 cargando();
-                setTimeout(() => { // Esperar a que cargue el mensaje "Cargando..."
+                setTimeout(() => {
                     exito();
                     $('#contenidoDinamico').html(response);
                     inicializarDataTables();
@@ -65,6 +68,7 @@
             },
         });
     });
+
 
     function inicializarDataTables() {
         let tabla = $('#tabla');

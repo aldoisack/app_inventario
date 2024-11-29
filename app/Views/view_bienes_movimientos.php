@@ -4,8 +4,10 @@
 
             <!-- Título -->
             <div>
-                <h1><b>Editar <?= $bien['codigo'] ?></b></h1>
+                <h1><b>Movimientos: </b></h1>
             </div>
+
+            <!-- Botón "Regresar" -->
             <div>
                 <a
                     class="btn btn-danger vistaDinamica"
@@ -16,183 +18,85 @@
 
         </div>
         <div class="card-body">
-            <div class="row justify-content-center align-items-start g-2">
-                <div class="col-md-7">
+            <?php foreach ($movimientos as $movimiento) :  ?>
+                <div class="row justify-content-center align-items-start g-2">
+                    <div class="col">
 
-                    <!-- Categoría -->
-                    <div class="mb-3">
-                        <label for="id_categoria" class="form-label">Categoría</label>
-                        <select
-                            class="form-select form-select-md"
-                            name="id_categoria"
-                            id="id_categoria">
-                            <option>-----</option>
-                            <?php foreach ($categorias as $categoria) : ?>
-                                <option
-                                    <?= $categoria['nombre_categoria'] == $bien['nombre_categoria'] ? 'Selected' : ''  ?>
-                                    value="<?= $categoria['id_categoria']  ?>">
-                                    <?= $categoria['nombre_categoria']  ?>
-                                </option>
-                            <?php endforeach ?>
-                        </select>
-                    </div>
+                        <!-- Categoría -->
+                        <div class="mb-3">
+                            <div class="d-flex">
+                                <label class="form-label w-50 text-end pe-2"><b>Categoría:</b></label>
+                                <label><?= $movimiento['nombre_categoria'] ?></label>
+                            </div>
+                        </div>
 
-                    <!-- Código patrimonial -->
-                    <div class="mb-3">
-                        <label for="codigo" class="form-label">Código</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="codigo"
-                            id="codigo"
-                            aria-describedby="helpId"
-                            placeholder=""
-                            value="<?= $bien['codigo'] ?>" />
-                    </div>
+                        <!-- Tipo movimiento -->
+                        <?php $es_entrada = ($movimiento['nombre_tipo_movimiento'] == 'Entrada') ? 'entrada' : 'salida' ?>
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center">
+                                <label class="form-label w-50 text-end pe-2"><b>Tipo movimiento:</b></label>
+                                <label class="etiqueta <?= $es_entrada ?> "><?= $movimiento['nombre_tipo_movimiento'] ?></label>
 
+                            </div>
+                        </div>
 
-                    <!-- Oficina -->
-                    <div class="mb-3">
-                        <label for="oficina_actual" class="form-label">Oficina</label>
-                        <select
-                            class="form-select form-select-md"
-                            name="oficina_actual"
-                            id="oficina_actual">
-                            <option>-----</option>
-                            <?php foreach ($oficinas as $oficina) : ?>
-                                <option
-                                    <?= $oficina['nombre_oficina'] == $bien['nombre_oficina'] ? 'Selected' : ''  ?>
-                                    value="<?= $oficina['id_oficina']  ?>">
-                                    <?= $oficina['nombre_oficina']  ?>
-                                </option>
-                            <?php endforeach ?>
-                        </select>
-                    </div>
+                        <!-- Oficina origen -->
+                        <div class="mb-3">
+                            <div class="d-flex">
+                                <label class="form-label w-50 text-end pe-2"><b>Oficina origen:</b></label>
+                                <label><?= $movimiento['oficina_origen'] ?></label>
+                            </div>
+                        </div>
 
-                    <!-- Estado -->
-                    <div class="mb-3">
-                        <label for="estado" class="form-label">Estado</label>
-                        <select
-                            class="form-select form-select-md"
-                            name="estado"
-                            id="estado">
-                            <option>-----</option>
-                            <?php foreach ($estados as $estado) : ?>
-                                <option
-                                    <?= $estado['nombre_estado'] == $bien['nombre_estado'] ? 'Selected' : ''  ?>
-                                    value="<?= $estado['id_estado']  ?>">
-                                    <?= $estado['nombre_estado']  ?>
-                                </option>
-                            <?php endforeach ?>
-                        </select>
-                    </div>
-
-
-                    <div class="row justify-content-center align-items-center g-2">
+                        <!-- Oficina destino -->
+                        <div class="mb-3">
+                            <div class="d-flex">
+                                <label class="form-label w-50 text-end pe-2"><b>Oficina destino:</b></label>
+                                <label><?= $movimiento['oficina_destino'] ?></label>
+                            </div>
+                        </div>
 
                         <!-- Fecha -->
-                        <div class="col">
-                            <div class="mb-3">
-                                <label for="fecha" class="form-label">Fecha ingreso</label>
-                                <input
-                                    type="date"
-                                    class="form-control"
-                                    name="fecha"
-                                    id="fecha"
-                                    aria-describedby="helpId"
-                                    placeholder=""
-                                    value="<?= substr($bien['fecha_hora_registro'], 0, 10) ?>" />
+                        <div class="mb-3">
+                            <div class="d-flex">
+                                <label class="form-label w-50 text-end pe-2"><b>Fecha:</b></label>
+                                <label><?= date('d/m/Y', strtotime($movimiento['fecha_hora_registro'])) ?></label>
                             </div>
                         </div>
 
                         <!-- Hora -->
-                        <div class="col">
-                            <div class="mb-3">
-                                <label for="hora" class="form-label">Hora</label>
-                                <input
-                                    type="time"
-                                    class="form-control"
-                                    name="hora"
-                                    id="hora"
-                                    aria-describedby="helpId"
-                                    placeholder=""
-                                    value="<?= substr($bien['fecha_hora_registro'], 11, 5) ?>" />
+                        <div class="mb-3">
+                            <div class="d-flex">
+                                <label class="form-label w-50 text-end pe-2"><b>Hora:</b></label>
+                                <label><?= date('H:i', strtotime($movimiento['fecha_hora_registro'])) ?></label>
+                            </div>
+                        </div>
+
+                        <!-- Usuario -->
+                        <div class="mb-3">
+                            <div class="d-flex">
+                                <label class="form-label w-50 text-end pe-2"><b>Usuario:</b></label>
+                                <label><?= $movimiento['nombre'] ?></label>
                             </div>
                         </div>
 
                     </div>
-                </div>
 
-                <!-- Imagen -->
-                <div class="col px-4">
-                    <div class="mb-3">
-                        <label for="imagen" class="form-label">Imagen</label>
-                        <input
-                            type="file"
-                            class="form-control"
-                            name="imagen"
-                            id="imagen"
-                            placeholder=""
-                            aria-describedby="fileHelpId" />
+                    <!-- Imagen -->
+                    <div class="col">
+                        <div id="previewImg" class="mb-3">
+                            <img
+                                class="img-fluid rounded"
+                                width="75%"
+                                height="75%"
+                                src="<?= base_url('uploads') . '/' . $movimiento['imagen'] ?>"
+                                alt="Imagen del bien">
+                        </div>
                     </div>
-                    <div id="previewImg" class="mb-3"></div>
-                </div>
 
-            </div>
+                </div>
+                <hr>
+            <?php endforeach ?>
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function() {
-
-        // Obtener el código del bien y la imagen del atributo 'data-'
-        var imagen = '<?= $bien['imagen'] ?>'
-        var ruta = '<?= base_url('buscar_imagen') ?>/' + imagen;
-
-        // Comprobar si la imagen está disponible
-        if (imagen) {
-            $.ajax({
-                url: ruta,
-                method: 'GET',
-                success: function() {
-
-                    // Si la imagen existe, mostrarla
-                    $('#previewImg').html('<img src="<?= base_url('uploads') ?>/' + imagen + '" alt="Imagen del Bien" class="img-fluid rounded" width="100%" height="100%">');
-
-                },
-                error: function() {
-
-                    // Si no existe, mostrar un mensaje alternativo
-                    $('#previewImg').html('<p>No hay imagen disponible para este bien.</p>');
-                }
-            });
-        } else {
-
-            // Si no hay imagen asignada, mostrar un mensaje alternativo
-            $('#previewImg').html('<p>No hay imagen disponible para este bien.</p>');
-        }
-    });
-</script>
-
-<script>
-    $(document).ready(function() {
-        // Previsualizar la imagen seleccionada
-        $('#imagen').on('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    // Crear una etiqueta <img> si no existe
-                    if ($('#previewImg img').length === 0) {
-                        $('#previewImg').html('<img class="img-fluid rounded-top" alt="Previsualización de la imagen" width="100%" height="100%">');
-                    }
-
-                    // Asignar la URL de la imagen cargada
-                    $('#previewImg img').attr('src', e.target.result);
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-    });
-</script>

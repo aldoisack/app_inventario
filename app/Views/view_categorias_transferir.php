@@ -37,7 +37,7 @@
                 <!-- Imagen -->
                 <div class="mb-3">
                     <label for="imagen" class="form-label">Subir una imagen</label>
-                    <input class="form-control" type="file" id="imagen" name="imagen" onchange="previewImage(event)">
+                    <input required class="form-control" type="file" id="imagen" name="imagen" onchange="previewImage(event)">
 
                 </div>
                 <div class="mb-3 d-flex justify-content-center">

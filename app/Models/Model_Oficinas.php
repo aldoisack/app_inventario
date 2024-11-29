@@ -23,4 +23,13 @@ class Model_Oficinas extends Model
             ->where('id_oficina', $id_oficina)
             ->update();
     }
+
+    public function obtenerOficinasConTotales()
+    {
+        return $this->select('oficinas.id_oficina, oficinas.nombre_oficina, COUNT(bienes.id_bien) as total_bienes')
+            ->join('bienes', 'bienes.oficina_actual = oficinas.id_oficina', 'left') // Unimos bienes con oficinas
+            ->groupBy('oficinas.id_oficina') // Agrupamos por cada oficina
+            ->orderBy('nombre_oficina', 'ASC') // Ordenamos alfabéticamente
+            ->findAll();
+    }
 }
