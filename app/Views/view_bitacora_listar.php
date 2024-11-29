@@ -21,11 +21,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($bitacora as $registro) : ?>
+                    <?php foreach ($bitacora as $index => $registro) : ?>
                         <tr>
 
                             <!-- ID -->
-                            <td scope="row"><?= $registro['id_bitacora'] ?></td>
+                            <td scope="row"><?= $index + 1 ?></td>
 
                             <!-- Usuario -->
                             <td><?= $registro['nombre'] ?></td>

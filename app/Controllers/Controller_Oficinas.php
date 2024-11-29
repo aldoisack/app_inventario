@@ -29,8 +29,34 @@ class Controller_Oficinas extends Controller
 
     public function guardar()
     {
-        $datos['nombre_oficina'] = $this->request->getVar('nombre_oficina');
+        $datos['nombre_oficina'] = strtoupper(trim($this->request->getVar('nombre_oficina')));
         (new Model_Oficinas())->insert($datos);
+
+        // ----- REGISTRANDO BITÁCORA ----
+
+        // id_usuario
+        $sesion = session();
+        $id_usuario = $sesion->get('id_usuario');
+
+        // Acción
+        $accion = 'CREÓ';
+
+        // Registro
+        $registro = $modelo->getInsertID();
+
+        // Tabla
+        $tabla = 'categorias';
+
+        // Insertando datos
+        $datos = [
+            'id_usuario' => $id_usuario,
+            'accion' => $accion,
+            'registro' => $registro,
+            'tabla' => $tabla
+        ];
+        $modelo_bitacora = new Model_Bitacora();
+        $modelo_bitacora->insert($datos);
+
         $this->response->redirect(base_url('oficinas/listar'));
     }
 

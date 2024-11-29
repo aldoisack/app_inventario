@@ -20,7 +20,7 @@
                         required
                         type="text"
                         class="form-control"
-                        name="nombre_categoria">
+                        name="nombre_oficina">
                 </div>
 
             </div>

@@ -13,6 +13,7 @@ class Controller_Bitacora extends Controller
         $registros['bitacora'] = $modelo
             ->select('bitacora.*, usuarios.nombre')
             ->join('usuarios', 'bitacora.id_usuario = usuarios.id_usuario')
+            ->orderBy('fecha_hora_registro', 'DESC')
             ->findAll();
         return view('view_bitacora_listar', $registros);
     }
