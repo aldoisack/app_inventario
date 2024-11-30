@@ -71,6 +71,7 @@ $routes->get('oficinas/listar', 'Controller_Oficinas::listar');
 $routes->get('oficinas/crear', 'Controller_Oficinas::crear');
 $routes->post('oficinas/guardar', 'Controller_Oficinas::guardar');
 
+$routes->get('oficinas/editar/(:num)', 'Controller_oficinas:editar/$1');
 $routes->post('oficinas/actualizar', 'Controller_Oficinas::actualizar');
 
 $routes->get('oficinas/detalle/(:num)/(:any)', 'Controller_Oficinas::detalle/$1/$2');

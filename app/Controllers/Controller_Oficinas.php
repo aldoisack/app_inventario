@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Model_BienPatrimonial;
 use CodeIgniter\Controller;
 use App\Models\Model_Oficinas;
+use App\Models\Model_Bitacora;
 use App\Models\Model_Usuarios;
 
 use function PHPSTORM_META\map;
@@ -30,7 +31,8 @@ class Controller_Oficinas extends Controller
     public function guardar()
     {
         $datos['nombre_oficina'] = strtoupper(trim($this->request->getVar('nombre_oficina')));
-        (new Model_Oficinas())->insert($datos);
+        $modelo = new Model_Oficinas();
+        $modelo->insert($datos);
 
         // ----- REGISTRANDO BITÁCORA ----
 
@@ -45,7 +47,7 @@ class Controller_Oficinas extends Controller
         $registro = $modelo->getInsertID();
 
         // Tabla
-        $tabla = 'categorias';
+        $tabla = 'oficinas';
 
         // Insertando datos
         $datos = [
@@ -58,6 +60,17 @@ class Controller_Oficinas extends Controller
         $modelo_bitacora->insert($datos);
 
         $this->response->redirect(base_url('oficinas/listar'));
+    }
+
+    // --------------------------------------------------
+    // Sección CREAR Y GUARDAR
+    // --------------------------------------------------
+
+    public function editar($id_oficina)
+    {
+        $modelo = new Model_Oficinas();
+        $oficina['oficina'] = $modelo->where('id_oficina', $id_oficina)->first();
+        return view('view_oficinas_editar', $oficina);
     }
 
     public function actualizar()
