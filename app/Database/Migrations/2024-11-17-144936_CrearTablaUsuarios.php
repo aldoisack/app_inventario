@@ -30,6 +30,10 @@ class CrearTablaUsuarios extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => '100',
             ],
+            'fecha_hora_registro' => [
+                'type' => 'DATETIME',
+                'default' => new \CodeIgniter\Database\RawSql('CURRENT_TIMESTAMP'),
+            ],
         ]);
         $this->forge->addKey('id_usuario', TRUE);
         $this->forge->addForeignKey('id_rol', 'roles', 'id_rol');

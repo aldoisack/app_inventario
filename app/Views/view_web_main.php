@@ -58,7 +58,7 @@
             success: function(response) {
                 cargando();
                 setTimeout(() => {
-                    exito();
+                    // exito();
                     $('#contenidoDinamico').html(response);
                     inicializarDataTables();
                 }, 250);

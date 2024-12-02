@@ -63,7 +63,7 @@ class Controller_Oficinas extends Controller
     }
 
     // --------------------------------------------------
-    // Sección CREAR Y GUARDAR
+    // Sección EDITAR Y ACTUALIZAR
     // --------------------------------------------------
 
     public function editar($id_oficina)
@@ -75,13 +75,37 @@ class Controller_Oficinas extends Controller
 
     public function actualizar()
     {
-        $datos = [
-            'id_oficina'     => $this->request->getVar('id_oficina'),
-            'nombre_oficina' => $this->request->getVar('nombre_oficina'),
-        ];
+        $id_oficina = strtoupper(trim($this->request->getVar('id_oficina')));
+        $nombre_oficina['nombre_oficina'] = strtoupper(trim($this->request->getVar('nombre_oficina')));
         $modelo = new Model_Oficinas();
-        $modelo->replace($datos);
-        $this->response->redirect(base_url('oficinas/listar'));
+        $modelo->update($id_oficina, $nombre_oficina);
+
+        // ----- REGISTRANDO BITÁCORA ----
+
+        // id_usuario
+        $sesion = session();
+        $id_usuario = $sesion->get('id_usuario');
+
+        // Acción
+        $accion = 'ÉDITÓ';
+
+        // Registro
+        $registro = $id_oficina;
+
+        // Tabla
+        $tabla = 'oficinas';
+
+        // Insertando datos
+        $datos = [
+            'id_usuario' => $id_usuario,
+            'accion' => $accion,
+            'registro' => $registro,
+            'tabla' => $tabla
+        ];
+        $modelo_bitacora = new Model_Bitacora();
+        $modelo_bitacora->insert($datos);
+
+        return $this->response->redirect(base_url('oficinas/listar'));
     }
 
     // --------------------------------------------------

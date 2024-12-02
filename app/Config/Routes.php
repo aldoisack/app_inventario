@@ -71,7 +71,7 @@ $routes->get('oficinas/listar', 'Controller_Oficinas::listar');
 $routes->get('oficinas/crear', 'Controller_Oficinas::crear');
 $routes->post('oficinas/guardar', 'Controller_Oficinas::guardar');
 
-$routes->get('oficinas/editar/(:num)', 'Controller_oficinas:editar/$1');
+$routes->get('oficinas/editar/(:num)', 'Controller_Oficinas::editar/$1');
 $routes->post('oficinas/actualizar', 'Controller_Oficinas::actualizar');
 
 $routes->get('oficinas/detalle/(:num)/(:any)', 'Controller_Oficinas::detalle/$1/$2');
@@ -80,13 +80,15 @@ $routes->get('oficinas/detalle/(:num)/(:any)', 'Controller_Oficinas::detalle/$1/
 // USUARIOS
 // ---------------------------------------------
 
-$routes->get(
-    'usuarios/listar',
-    'Controller_Usuarios::listar',
-    ['filter' => 'sesion']
-);
-$routes->get(
-    'perfil',
-    'Controller_Usuarios::perfil',
-    ['filter' => 'sesion']
-);
+$routes->get('usuarios/listar', 'Controller_Usuarios::listar');
+
+$routes->get('usuarios/crear', 'Controller_Usuarios::crear');
+$routes->post('usuarios/guardar', 'Controller_Usuarios::guardar');
+
+$routes->get('usuarios/editar/(:num)', 'Controller_Usuarios::editar/$1');
+$routes->post('usuarios/actualizar', 'Controller_Usuarios::actualizar');
+
+$routes->get('usuarios/detalle/(:num)/(:any)', 'Controller_Usuarios::detalle/$1/$2');
+
+
+$routes->get('pdf/generar', 'Controller_Pdf::generar');

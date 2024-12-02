@@ -29,3 +29,21 @@
 #tabla thead th {
     text-align: left;
 }
+
+.invisible {
+    color: white;
+}
+
+.coinciden {
+    color: green !important;
+    font-weight: bold;
+}
+
+.no-coinciden {
+    color: red !important;
+    font-weight: bold;
+}
+
+.no-coinciden::before {
+    content: "<i class=" bi bi-patch-exclamation"></i> ";
+}
