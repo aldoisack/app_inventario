@@ -25,16 +25,30 @@
                         <th scope="col">Código</th>
                         <th scope="col">Categoría</th>
                         <th scope="col">Oficina</th>
+                        <th scope="col">Estado</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($bienes as $index => $registro) : ?>
                         <tr>
+
+                            <!-- # -->
                             <td scope="row"><?= $index + 1 ?></td>
+
+                            <!-- Código -->
                             <td><?= $registro['codigo'] ?></td>
+
+                            <!-- Categoría -->
                             <td><?= $registro['nombre_categoria'] ?></td>
+
+                            <!-- Oficina -->
                             <td><?= $registro['nombre_oficina'] ?></td>
+
+                            <!-- Estado -->
+                            <td><?= $registro['nombre_estado'] ?></td>
+
+                            <!-- Botones -->
                             <td class="col-md-4">
 
                                 <!-- Botón "Detalle" -->

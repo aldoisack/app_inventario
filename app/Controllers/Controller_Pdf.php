@@ -2,30 +2,28 @@
 
 namespace App\Controllers;
 
+use App\Models\Model_Movimientos;
 use CodeIgniter\Controller;
-use Dompdf\Dompdf;
+use App\Libraries\dompdf\vendor\dompdf\dompdf\src\Dompdf;
+use Dompdf\Cpdf;
+
 
 class Controller_Pdf extends Controller
 {
-    public function generar()
+    public function imprimir_movimientos($id_bien)
     {
-        // Contenido HTML para el PDF
-        $html = '<h1>Hola, este es un PDF generado con Dompdf</h1>';
+        $modelo_movimientos = new Model_Movimientos();
+        $movimientos['movimientos'] = $modelo_movimientos->obtener_movimientos($id_bien);
 
-        // Crear instancia de Dompdf
+
+        $vista = view('view_bienes_movimientos_imprimir', $movimientos);
+        $html = view('view_web_pdf', ['vista' => $vista]);
+
         $dompdf = new Dompdf();
-
-        // Cargar contenido HTML
+        $dompdf->set_option('isRemoteEnabled', true);
         $dompdf->loadHtml($html);
-
-        // Configurar tamaño y orientación del papel
-        $dompdf->setPaper('A4', 'portrait'); // o 'landscape' para horizontal
-
-        // Renderizar el PDF
+        $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-
-        // Enviar el PDF al navegador
-        return $this->response->setHeader('Content-Type', 'application/pdf')
-            ->setBody($dompdf->output());
+        return $this->response->setHeader('Content-Type', 'application/pdf')->setBody($dompdf->output());
     }
 }

@@ -42,8 +42,7 @@ $modulos = $sesion->get('modulos');
 
 <body>
     <header>
-        <nav
-            class="navbar navbar-expand-md navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand"><b>OTI</b></a>
                 <button
@@ -60,7 +59,7 @@ $modulos = $sesion->get('modulos');
                     <div class="d-flex flex-column flex-lg-row justify-content-between w-100 align-items-start align-items-lg-center">
 
                         <!-- Módulos -->
-                        <ul class="navbar-nav d-flex flex-column flex-lg-row">
+                        <ul class="navbar-nav d-flex flex-column flex-lg-row justify-content-center w-100">
                             <?php foreach ($modulos as $registro) : ?>
                                 <li class="nav-item">
                                     <b>
@@ -82,14 +81,12 @@ $modulos = $sesion->get('modulos');
                                     class="nav-link active"
                                     href="<?= base_url('logout') ?>"
                                     aria-current="page">
-                                    <b>Cerrar sesión</b>
+                                    <b>Salir</b>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
-
             </div>
         </nav>
-
     </header>

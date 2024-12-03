@@ -41,7 +41,7 @@ class Autoload extends AutoloadConfig
      */
     public $psr4 = [
         APP_NAMESPACE => APPPATH,
-        'Dompdf' => APPPATH . 'Libraries/dompdf/src',
+        'Dompdf' => APPPATH . 'Libraries/dompdf/vendor/dompdf/dompdf',
     ];
 
     /**

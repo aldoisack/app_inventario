@@ -53,7 +53,7 @@ $routes->post('bienes/actualizar', 'Controller_BienPatrimonial::actualizar');
 $routes->get('bienes/detalle/(:num)', 'Controller_BienPatrimonial::detalle/$1');
 $routes->post('bienes/transferir', 'Controller_BienPatrimonial::transferir');
 $routes->get('bienes/movimientos/(:num)', 'Controller_BienPatrimonial::movimientos/$1');
-
+$routes->get('bienes/imprimir_movimientos/(:num)', 'Controller_BienPatrimonial::imprimir_movimientos/$1');
 $routes->get('buscar_imagen/(:segment)', 'Controller_BienPatrimonial::buscar_imagen/$1');
 
 
@@ -91,4 +91,4 @@ $routes->post('usuarios/actualizar', 'Controller_Usuarios::actualizar');
 $routes->get('usuarios/detalle/(:num)/(:any)', 'Controller_Usuarios::detalle/$1/$2');
 
 
-$routes->get('pdf/generar', 'Controller_Pdf::generar');
+$routes->get('pdf/imprimir_movimientos/(:num)', 'Controller_Pdf::imprimir_movimientos/$1');

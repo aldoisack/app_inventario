@@ -7,8 +7,16 @@
                 <h1><b>Movimientos: </b></h1>
             </div>
 
-            <!-- Botón "Regresar" -->
             <div>
+
+                <!-- Botón "PDF" -->
+                <a
+                    class="btn btn-success"
+                    href="<?= base_url('pdf/imprimir_movimientos/') . $id_bien ?>"
+                    role="button">
+                    <i class="bi bi-box-arrow-in-left"></i> PDF</a>
+
+                <!-- Botón "Regresar" -->
                 <a
                     class="btn btn-danger vistaDinamica"
                     href="<?= base_url('bienes/listar') ?>"

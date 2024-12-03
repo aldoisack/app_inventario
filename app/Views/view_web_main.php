@@ -7,8 +7,45 @@
 <?= view('view_web_footer') ?>
 
 
-
 <script>
+    let abierto = false;
+
+    // Ocultar navbar al hacer clic en un enlace
+    $(document).on("click", ".navbar-nav .nav-link", function() {
+        $(".navbar-collapse").collapse("hide");
+        abierto = !abierto;
+    });
+
+    $(document).on("click", ".navbar .navbar-brand", function() {
+        $(".navbar-collapse").collapse("hide");
+        abierto = !abierto;
+    });
+
+    // Alternar el navbar al hacer clic en el botón de colapsar
+    $(document).on("click", ".navbar-toggler", function() {
+        const navbarCollapse = $("#collapsibleNavId");
+
+        if (abierto) {
+            console.log("Navbar contraído");
+            setTimeout(() => {
+                navbarCollapse.collapse("hide");
+                // navbarCollapse.removeClass("show");
+                // navbarCollapse.addClass("collapsing");
+            }, 360);
+        } else {
+            console.log("Navbar desplegado");
+        }
+
+        // Cambiar el estado de la variable
+        abierto = !abierto;
+    });
+
+
+
+
+
+
+
     $(document).on('click', '.menuDinamico, .vistaDinamica', function(e) {
         e.preventDefault();
         let ruta = $(this).attr('href');

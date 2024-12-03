@@ -18,7 +18,7 @@ class Controller_BienPatrimonial extends Controller
     public function listar()
     {
         $modelo = new Model_BienPatrimonial();
-        $bienes['bienes'] = $modelo->obtener_bienes_con_categoria();
+        $bienes['bienes'] = $modelo->listar_bienes();
         return view('view_bienes_listar', $bienes);
     }
 
@@ -327,6 +327,7 @@ class Controller_BienPatrimonial extends Controller
     {
         $modelo = new Model_Movimientos();
         $movimientos['movimientos'] = $modelo->obtener_movimientos($id_bien);
+        $movimientos['id_bien'] = $id_bien;
         return view('view_bienes_movimientos', $movimientos);
     }
 

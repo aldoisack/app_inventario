@@ -18,7 +18,7 @@ class Model_BienPatrimonial extends Model
         'imagen',
     ];
 
-    public function obtener_bienes_con_categoria()
+    public function listar_bienes()
     {
         return $this
             ->select(
@@ -26,11 +26,13 @@ class Model_BienPatrimonial extends Model
                 bienes.id_bien,
                 bienes.codigo,
                 categorias.nombre_categoria,
-                oficinas.nombre_oficina
+                oficinas.nombre_oficina,
+                estados.nombre_estado
                 '
             )
             ->join('categorias', 'categorias.id_categoria = bienes.id_categoria')
             ->join('oficinas', 'oficinas.id_oficina = bienes.oficina_actual')
+            ->join('estados', 'estados.id_estado = bienes.id_estado')
             ->findAll();
     }
 

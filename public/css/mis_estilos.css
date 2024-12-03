@@ -21,10 +21,6 @@
     border-color: orange;
 }
 
-.etiqueta::before {
-    content: "● ";
-}
-
 #tabla tbody td,
 #tabla thead th {
     text-align: left;
