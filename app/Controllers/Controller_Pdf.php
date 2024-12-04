@@ -4,9 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Model_Movimientos;
 use CodeIgniter\Controller;
-use App\Libraries\dompdf\vendor\dompdf\dompdf\src\Dompdf;
-use Dompdf\Cpdf;
-
+use Dompdf\Dompdf;
 
 class Controller_Pdf extends Controller
 {
