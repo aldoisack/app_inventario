@@ -18,16 +18,16 @@ class SeederModulos extends Seeder
                 'ruta'          => 'bienes/listar',
             ],
             [
-                'nombre_modulo' => 'Bitacora',
-                'ruta'          => 'bitacora/listar',
-            ],
-            [
                 'nombre_modulo' => 'Oficinas',
                 'ruta'          => 'oficinas/listar',
             ],
             [
                 'nombre_modulo' => 'Usuarios',
                 'ruta'          => 'usuarios/listar',
+            ],
+            [
+                'nombre_modulo' => 'Bitacora',
+                'ruta'          => 'bitacora/listar',
             ],
         ];
         $this->db->table('modulos')->insertBatch($data);

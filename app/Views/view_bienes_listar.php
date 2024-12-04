@@ -7,6 +7,13 @@
         </div>
         <div>
             <a
+                class="btn btn-success"
+                href="<?= base_url('excel/exportar') ?>"
+                target="_blank"
+                role="button">
+                <i class="bi bi-file-excel-fill"></i>
+                Excel</a>
+            <a
                 class="btn btn-primary vistaDinamica"
                 href="<?= base_url('bienes/crear_rapido') ?>"
                 role="button">

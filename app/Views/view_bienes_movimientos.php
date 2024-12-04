@@ -13,8 +13,9 @@
                 <a
                     class="btn btn-success"
                     href="<?= base_url('pdf/imprimir_movimientos/') . $id_bien ?>"
+                    target="_blank"
                     role="button">
-                    <i class="bi bi-box-arrow-in-left"></i> PDF</a>
+                    <i class="bi bi-file-earmark-pdf-fill"></i> PDF</a>
 
                 <!-- Botón "Regresar" -->
                 <a

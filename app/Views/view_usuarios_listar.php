@@ -65,7 +65,7 @@
                                 <!-- Botón "Restablecer contraseña" -->
                                 <a
                                     class="btn btn-danger vistaDinamica"
-                                    href="<?= base_url('usuarios/detalle/') . $usuario['id_usuario'] ?>"
+                                    href="<?= base_url('usuarios/restablecer_contrasenia/') . $usuario['id_usuario'] ?>"
                                     role="button">
                                     <i class="bi bi-key"></i>
                                     Restablecer</a>

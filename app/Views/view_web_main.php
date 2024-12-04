@@ -8,9 +8,35 @@
 
 
 <script>
+    // --------------------------------------------------
+    // Vista inicial
+    // --------------------------------------------------
+
+    $(document).ready(function() {
+        let ruta = `<?= base_url('carousel') ?>`;
+        $.ajax({
+            url: ruta,
+            method: 'GET',
+            success: function(response) {
+                cargando();
+                setTimeout(() => {
+                    $('#contenidoDinamico').html(response);
+                }, 250);
+            },
+        });
+    });
+
+
+    // --------------------------------------------------
+    // NAVBAR
+    // --------------------------------------------------
+
     let abierto = false;
 
-    // Ocultar navbar al hacer clic en un enlace
+    //
+    // ----- MODULOS -----
+    //
+
     $(document).on("click", ".navbar-nav .nav-link", function() {
         $(".navbar-collapse").collapse("hide");
         abierto = !abierto;
@@ -21,10 +47,12 @@
         abierto = !abierto;
     });
 
-    // Alternar el navbar al hacer clic en el botón de colapsar
+    //
+    // ----- BOTÓN MOSTRAR / OCULTAR -----
+    //
+
     $(document).on("click", ".navbar-toggler", function() {
         const navbarCollapse = $("#collapsibleNavId");
-
         if (abierto) {
             console.log("Navbar contraído");
             setTimeout(() => {
@@ -35,57 +63,47 @@
         } else {
             console.log("Navbar desplegado");
         }
-
-        // Cambiar el estado de la variable
         abierto = !abierto;
     });
 
-
-
-
-
-
+    // --------------------------------------------------
+    // Cargar vistas en el contenedor
+    // --------------------------------------------------
 
     $(document).on('click', '.menuDinamico, .vistaDinamica', function(e) {
         e.preventDefault();
         let ruta = $(this).attr('href');
-
-        // Si es un enlace del menú, gestionar el estado "activo"
         if ($(this).hasClass('menuDinamico')) {
-            // Quitar la clase 'active' de todos los enlaces del menú
             $('.menuDinamico').removeClass('active');
-
-            // Agregar la clase 'active' al enlace clicado
             $(this).addClass('active');
         }
-
         $.ajax({
             url: ruta,
             method: 'GET',
             success: function(response) {
                 cargando();
-                setTimeout(() => { // Esperar a que cargue el mensaje "Cargando..."
+                setTimeout(() => {
                     // exito();
                     $('#contenidoDinamico').html(response);
                     inicializarDataTables();
                 }, 250);
-
             }
         });
     });
 
+    // --------------------------------------------------
+    // Cargar las respuestas de los formularios en el contenedor
+    // --------------------------------------------------
+
     $(document).on('click', '.formularioDinamico', function(e) {
         e.preventDefault();
-
         let form = $(this).closest('form')[0]; // Obtener el formulario como objeto DOM
         if (!form.checkValidity()) {
             form.reportValidity(); // Mostrar mensajes de validación nativos
             return; // Detener la ejecución si no es válido
         }
-
         let ruta = $(form).attr('action');
         let formData = new FormData(form);
-
         $.ajax({
             url: ruta,
             method: 'POST',
@@ -100,12 +118,12 @@
                     inicializarDataTables();
                 }, 250);
             },
-            error: function(xhr, status, error) {
-                console.error('Error en la solicitud:', error);
-            },
         });
     });
 
+    // --------------------------------------------------
+    // Funciones extra
+    // --------------------------------------------------
 
     function inicializarDataTables() {
         let tabla = $('#tabla');

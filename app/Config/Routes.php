@@ -9,7 +9,7 @@ use function PHPSTORM_META\map;
  */
 
 $routes->get('main', 'Home::index', ['filter' => 'sesion']);
-$routes->get('probando', 'Probando::probando');
+
 
 // ---------------------------------------------
 // SESIÓN
@@ -88,7 +88,14 @@ $routes->post('usuarios/guardar', 'Controller_Usuarios::guardar');
 $routes->get('usuarios/editar/(:num)', 'Controller_Usuarios::editar/$1');
 $routes->post('usuarios/actualizar', 'Controller_Usuarios::actualizar');
 
-$routes->get('usuarios/detalle/(:num)/(:any)', 'Controller_Usuarios::detalle/$1/$2');
+$routes->get('usuarios/restablecer_contrasenia/(:num)', 'Controller_Usuarios::restablecer_contrasenia/$1');
+$routes->post('usuarios/actualizar_contrasenia/', 'Controller_Usuarios::actualizar_contrasenia');
 
+// ---------------------------------------------
+// EXTRA
+// ---------------------------------------------
 
 $routes->get('pdf/imprimir_movimientos/(:num)', 'Controller_Pdf::imprimir_movimientos/$1');
+$routes->get('excel/exportar', 'Controller_Excel::exportar');
+$routes->get('carousel', 'Controller_Carousel::index');
+$routes->post('carousel/guardar', 'Controller_Carousel::guardar');

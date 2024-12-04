@@ -167,5 +167,57 @@ class Controller_Usuarios extends Controller
     // Sección RESTABLECER CONTRASEÑA
     // --------------------------------------------------
 
-    public function restablecer() {}
+    public function restablecer_contrasenia($id_usuario)
+    {
+
+        $modelo_usuarios = new Model_Usuarios();
+        $modelo_roles = new Model_Roles();
+
+        $usuario = $modelo_usuarios->where('id_usuario', $id_usuario)->first();
+        $roles = $modelo_roles->findAll();
+
+        $datos = [
+            'usuario' => $usuario,
+            'roles'   => $roles
+        ];
+
+        return view('view_usuarios_restablecer_contrasenia', $datos);
+    }
+
+    public function actualizar_contrasenia()
+    {
+        $id_usuario = $this->request->getVar('id_usuario');
+        $datos = [
+            'contrasenia' => $this->request->getVar('usuario'),
+        ];
+        $modelo_usuarios = new Model_Usuarios();
+        $modelo_usuarios->update($id_usuario, $datos);
+
+        // ----- REGISTRANDO BITÁCORA ----
+
+        // id_usuario
+        $sesion = session();
+        $id_usuario = $sesion->get('id_usuario');
+
+        // Acción
+        $accion = 'CAMBIÓ CONTRASEÑA';
+
+        // Registro
+        $registro = $id_usuario;
+
+        // Tabla
+        $tabla = 'usuarios';
+
+        // Insertando datos
+        $datos = [
+            'id_usuario' => $id_usuario,
+            'accion' => $accion,
+            'registro' => $registro,
+            'tabla' => $tabla
+        ];
+        $modelo_bitacora = new Model_Bitacora();
+        $modelo_bitacora->insert($datos);
+
+        return $this->response->redirect(base_url('usuarios/listar'));
+    }
 }

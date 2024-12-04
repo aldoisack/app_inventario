@@ -44,7 +44,7 @@ $modulos = $sesion->get('modulos');
     <header>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand"><b>OTI</b></a>
+                <a href="<?= base_url('main') ?>" class="navbar-brand"><b>OTI</b></a>
                 <button
                     class="navbar-toggler d-lg-none"
                     type="button"

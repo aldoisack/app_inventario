@@ -1,6 +1,6 @@
 <!-- Formulario -->
 <form
-    action="<?= base_url('usuarios/guardar') ?>"
+    action="<?= base_url('usuarios/actualizar_contrasenia') ?>"
     method="post">
 
     <div class="d-flex justify-content-center">
@@ -8,7 +8,7 @@
 
             <!-- Encabezado -->
             <div class="card-header">
-                <h1><b>Nuevo usuario</b></h1>
+                <h1><b>Restablecer contrasenia</b></h1>
             </div>
 
             <div class="card-body">
@@ -20,6 +20,12 @@
                     </div>
                 <?php endif; ?>
 
+                <input
+                    type="hidden"
+                    class="form-control"
+                    name="id_usuario"
+                    value="<?= $usuario['id_usuario'] ?>" />
+
                 <div
                     class="row justify-content-center align-items-center g-2">
 
@@ -28,10 +34,12 @@
                         <div class="mb-3">
                             <label for="nombre_oficina" class="form-label">Nombre</label>
                             <input
+                                readonly
                                 required
                                 type="text"
                                 class="form-control"
-                                name="nombre">
+                                name="nombre"
+                                value="<?= $usuario['nombre'] ?>">
                         </div>
                     </div>
 
@@ -40,10 +48,12 @@
                         <div class="mb-3">
                             <label for="nombre_oficina" class="form-label">Usuario</label>
                             <input
+                                readonly
                                 required
                                 type="text"
                                 class="form-control"
-                                name="usuario">
+                                name="usuario"
+                                value="<?= $usuario['usuario'] ?>">
                         </div>
                     </div>
 
@@ -51,21 +61,23 @@
                     <div class="col">
                         <div class="mb-3">
                             <div class="mb-3">
-                                <label for="" class="form-label">City</label>
+                                <label for="" class="form-label">Rol</label>
                                 <select
+                                    disabled
                                     required
                                     class="form-select form-select-md"
                                     name="id_rol"
                                     id="id_rol">
-                                    <option value="" selected>----- Select one -----</option>
+                                    <option value="">----- Select one -----</option>
                                     <?php foreach ($roles as $rol) : ?>
-                                        <option value="<?= $rol['id_rol'] ?>"><?= $rol['nombre_rol'] ?></option>
+                                        <option
+                                            <?= ($rol['id_rol'] == $usuario['id_rol']) ? 'selected' : '' ?>
+                                            value="<?= $rol['id_rol'] ?>">
+                                            <?= $rol['nombre_rol'] ?>
+                                        </option>
                                     <?php endforeach ?>
-
-
                                 </select>
                             </div>
-
                         </div>
                     </div>
 
@@ -76,7 +88,7 @@
                     <!-- Contraseña -->
                     <div class="col">
                         <div class="mb-3">
-                            <label for="nombre_oficina" class="form-label">Contraseña</label>
+                            <label for="nombre_oficina" class="form-label">Nueva contraseña</label>
                             <input
                                 required
                                 type="password"
@@ -108,7 +120,7 @@
                 <!-- Botón "Cancelar" -->
                 <a
                     class="btn btn-danger vistaDinamica"
-                    href="<?= base_url('oficinas/listar') ?>"
+                    href="<?= base_url('usuarios/listar') ?>"
                     role="button">
                     Cancelar
                 </a>

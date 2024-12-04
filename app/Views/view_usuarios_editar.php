@@ -59,7 +59,7 @@
                     <div class="col">
                         <div class="mb-3">
                             <div class="mb-3">
-                                <label for="" class="form-label">City</label>
+                                <label for="" class="form-label">Rol</label>
                                 <select
                                     required
                                     class="form-select form-select-md"
