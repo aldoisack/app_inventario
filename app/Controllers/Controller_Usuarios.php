@@ -102,7 +102,7 @@ class Controller_Usuarios extends Controller
         $modelo_bitacora->insert($datos);
 
         // Redirigir al listado de usuarios
-        return $this->response->redirect('usuarios/listar');
+        return $this->response->redirect(base_url('usuarios/listar'));
     }
 
     // --------------------------------------------------
